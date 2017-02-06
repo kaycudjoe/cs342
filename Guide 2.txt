@@ -1,0 +1,128 @@
+1. Chapter 5 (focus primarily on Sections 5.1–5.2)
+a. Who invented the relational data model? When and where did they do their work?
+The relational data model was first introduced by Ted Codd of IBM Research in 1970 in a class paper, and it attracted immediate attention due to its simplicity and mathematical foundation. 
+	
+
+b. Explain the following terms:
+i. Relation
+A set of n-tuples. The table is called a relation.
+		
+ii. Attribute
+The name of a role played by some domain D in the relation schema R. This is the column header in the table. 
+		
+iii. Domain
+A domain D is a set of atomic (indivisible) values. By atomic we mean that each value in the domain is indivisible as far as the formal relational model is concerned. 
+		
+iv. n-tuple
+An n-tuple is an ordered list of n values, where each value is an element of the domain of that attribute or is a special NULL value. Each tuples is shown as a row. 
+		
+v. NULL value
+Represent attributes whose values are unknown or do not exist for some individual tuple.
+		
+vi. primary, foreign, candidate and super keys
+Primary Key: A primary key is a column or combination of columns that uniquely identifies a row within a table. 
+
+Foreign Key: A foreign key is a column in one table that relates to the primary key in another. A foreign key is a filed (or collection of fields) in one table that uniquely identifies a row of another table or the same table. 
+
+Candidate Key: A candidate key is a column, or set of columns, in a table that can uniquely identify any database record without referring to any other data. 
+
+Super Keys: A super key SK specifies a uniqueness constraint that no two distinct tuples in any relation state of a relation schema can have the same value for the SK. Every relation has at least one default super key - the set of all its attributes. A super key is a set of attributes within a table whose values can be used to uniquely identify a tuple. 
+		
+vii. referenced and referencing records
+A set of attributes FK in relation schema R1 is the referencing relation which references relation R2 which is the referenced relation. 
+If record R1 has attributes in FK with the same domain(S) as the primary key attributes of record R2, then R1 is the referencing relation and R2 is the referenced relation. 
+		
+
+c. Are tuples in a relation ordered? How about attribute values in a tuple? Explain why or why not.
+No, tuples in a relation are not ordered. Tuples in a relation do not have any particular order. A relation is defined as a set of tuples. Mathematically, elements of a set have no order among them; hence, tuples in a relation do not have any particular order. In other words, a relation is not sensitive to the ordering of tuples. 
+	
+Yes, attribute values in a tuple are ordered since they make an ordered list. 
+	
+
+d. Can attributes have multiple values in a single n-tuple? Why or why not?
+No, attributes cannot have multiple values in a straight n-tuple. This is because each value is not divisible into components - each value in a tuple is atomic. 
+	
+
+
+2. Chapter 6 (focus primarily on Sections 6.1–6.2 & 6.4) — Make sure that you know how to:
+a. Create tables with specified constraints, including primary/foreign key, not-null, domain and value-check constraints.
+- The CREATE TABLE command is used to specify a new relation by giving it a name and specifying its attributes and initial constraints. 
+
+	CREATE TABLE table_name
+	(
+	column_name1 data_type(size) constraint_name,
+	column_name2 data_type(size) NOT NULL,
+	column_name3 data_type(size) PRIMARY KEY,
+	....
+	);
+	
+In SQL, we have the following constraints:
+	• NOT NULL - Indicates that a column cannot store NULL value
+	• UNIQUE - Ensures that each row for a column must have a unique value
+	• PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Ensures that a column 	(or combination of two or more columns) have a unique identity which helps to 	find a particular record in a table more easily and quickly
+	• FOREIGN KEY - Ensure the referential integrity of the data in one table to 	match values in another table
+	• CHECK - Ensures that the value in a column meets a specific condition
+	• DEFAULT - Specifies a default value for a column
+	
+Syntax to define a Not Null constraint:
+[CONSTRAINT constraint name] NOT NULL
+	
+Syntax to define a Unique key at column level:
+[CONSTRAINT constraint_name] UNIQUE(column_name)
+	
+Syntax to define a Check constraint:
+[CONSTRAINT constraint_name] CHECK (condition) 
+
+Another Example
+CREATE TABLE College.Professor
+(
+Professor_ID int PRIMARY KEY,
+Student_ID int FOREIGN KEY, 
+int CHECK (
+);	
+
+
+b. Use the DML commands: INSERT, DELETE and UPDATE.
+INSERT
+INSERT is used to add a single tuple (row) to a relation (table). We must 	specify the relation name and a list of values for the tuple. The values should 	be listed in the same order in which the corresponding attributes were 		specified in the CREATE TABLE command. 
+INSERT INTO TABLE_NAME VALUES (value1, value2, value3, …., valueN);
+Eg. INSERT INTO EMPLOYEE VALUES (Fname, Lname, Dno, Ssn)
+	
+DELETE
+The DELETE command removes tuples from a relation. It incldes a WHERE clause, 	similar to that used in an SQL query, to select the tuples to be deleted. 
+DELETE FROM TABLE_NAME
+WHERE condition;
+	
+Eg. 
+DELETE FROM EMPLOYEE
+WHERE Lname = 'Brown';
+	
+DELETE FROM EMPLOYEE
+WHERE Ssn= '123456789';
+	
+DELETE FROM EMPLOYEE
+WHERE Dno=  5;
+	
+	
+UPDATE
+The UPDATE command is used to modify attribute values of one or more selected 	tuples. As in the DELETE command, a WHERE clause in the UPDATE command selects 	the tuples to be modified from a single relation. 
+	
+UPDATE TABLE_NAME
+SET = something = something, something = something
+WHERE condition; 
+	
+UPDATE EMPLOYEES
+Set Salary = Salary * 1.1
+WHERE Dno = 5; 
+	
+UPDATE CUSTOMERS
+SET email= 'kec32', number = 23454545454
+WHERE ID = 5;
+	
+
+c. Distinguish the ON DELETE actions: SET NULL; CASCADE.
+SET NULL
+The value of the affected referencing attribute is changed to NULL for SET 	NULL. 
+	
+CASCADE
+Delete all the referencing tuples. 
