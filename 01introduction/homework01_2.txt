@@ -1,0 +1,16 @@
+Karen Cudjoe
+CS 342
+Homework 01_2
+2/9/2017
+
+Exercise 2.13
+
+Slate Permutate Application
+
+STUDENT(ID, first_name, last_name, college_id)
+COLLEGE(ID, college_name)
+COURSE(ID, course_name, course_department, course_number, credit_hours, section_id)
+SECTION(ID, course_id, meeting_days, meeting_room, start_time, end_time, semester, year, professor)
+SCHEDULE(ID, student_id, schedule_name)
+
+
