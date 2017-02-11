@@ -1,0 +1,11 @@
+Karen Cudjoe 
+CS 342 
+
+Exercise 2.2
+
+a. The constraint that requires that all movies having a non-NULL score value must also have more than 1000 votes is:
+	CHECK (score IS NULL OR votes > 1000)
+	This constraint requires that all movies whose score is a NULL value have any number of votes. For movies whose scores are not NULL, it requires that the number of votes be 1000. 
+	
+b. Yes, a separate constraint is desirable in several instances. A separate constraint might be desired when you want the constraint to hold true in specific cases. Eg. under specific conditions such as location, time, day, season or such
+Also, we might want a separate constraint for easy modifying or deleting as opposed to having to go through the whole schema to get rid of it. 
