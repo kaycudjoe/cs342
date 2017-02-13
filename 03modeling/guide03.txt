@@ -1,0 +1,54 @@
+Karen Cudjoe
+CS 342
+
+Guide 3
+
+1. Read Chapter 3.
+a. Compare and contrast the database and the software design processes. Are agile modeling practices applicable to database design as well?
+
+Database Design: Database design is the process of producing a detailed data model of database. The database design process has the following four steps: 
+- Requirements collection and analysis. The database designers interview prospective database users to understand and document their data requirements. In parallel with specifying the data requirements, it is useful to specify the known functional requirements of the application. 
+- Conceptual schema for the database: Create a  high-level conceptual data model. 
+- Logical design or data model mapping: The actual implementation of the database, using a commercial DBMS. 
+- Physical design phase - The internal storage structures, file organizations, indexes, access paths, and physical design parameters for the database files are specified. 
+
+Software Design: Software design is the process of implementing software solutions to one or more sets of problems. 
+	
+Agile modeling practices are not so applicable to database design. In agile practices, developers break their tasks into sprints - and start building in the little increments (from the basics) whereas in database design, developers need to include all the necessities for the database right from the beginning (so they have to have a somewhat complete picture of the finished database or their goal for it). While agile practices are more iterative, making databases iterative will require restructuring of the entire database to make changes if necessary. Therefore, agile practices are more applicable to software design than database design. 
+	
+
+b. Explain the following terms: entities, relationships (including cardinality and participation constraints), attributes (simple, composite, multi-valued and derived). 
+- Entities: A thing or object in the real world with an independent existence. An entity may be an object with a physical existence (for example, a particular person, car, house, or employee) or it may be an object with a conceptual existence (for instance, a company, a job, or a university course). Each entity has attributes—the particular properties that describe it. For example, an EMPLOYEE entity may be described by the employee’s name, age, address, salary, and job. 
+		
+- Relationships (including cardinality and participation constraints):
+A situation that exists between two relational database tables where one table has a foreign key which references the primary key of the other table. It is an attribute of an entity that references another entity. Similar to an attribute. 
+	- Cardinality: The cardinality ratio specifies the maximum number of 	relationship instances that an entity can participate in. 
+	- Participation Constraint: The participation constraint specifies 	whether the existence of an entity depends on its being related to 	another entity via the relationship type. 
+			
+- Attributes (simple, composite, multi-valued and derived)
+Attributes are the particular properties that describe an entity. For example, an EMPLOYEE entity may be described by the employee’s name, age, address, salary, and job. 
+	- Simple: Attributes that are not divisible 
+	- Composite: Composite attributes can be divided into smaller 		subparts, which represent more basic attributes with independent 	meanings. Composite attributes can form a hierarchy. Example. The 	address of an employee
+	- Multi-valued: Multi-valued attributes are attributes that have 	different number of values for an entity. A multivalued attribute may 	have lower and upper bounds to constrain the number of values allowed 	for each individual entity. For example, the Colors attribute of a 	car may be restricted to have between one and two values, if we 	assume that a car can have two colors at most. 
+	- Derived: The value of an attribute can be determined from a related 	entity. When two (or more) attribute values are related. For example, 	the Age and Birth_date attributes of a person. 
+		
+	
+c. Explain weak entities and identifying relationships.
+- Weak Entities: Entity types that do not have key attributes of their own are called weak entity types. 
+- Identifying Relationships: The relationship type that relates a weak entity type to its owner the identifying relationship of the weak entity type.
+		
+
+d. Model a person-household database (from class 2) using an ERD.
+(See attached image)
+	
+
+e. Skim the material in Section 3.8 on UML diagrams; we won’t use it here but we have addressed it in CS 262 and will review it in unit 11.Note the ERD reference sheet in Figure 3.14.
+
+	
+2. Read Chapter 9.
+a. Map the ERD model from above to a relational database model.
+(See attached Image)
+	
+
+b. Explain how to map from a UML model to a relational database model. We will address this issue more carefully in a later unit (on object-relational mapping).
+The tables in the UML model will be tables in the relational database model. The attributes from the UML model will serve as the attributes for the relational tables they correspond to in the relational database model. 
