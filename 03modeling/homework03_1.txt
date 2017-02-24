@@ -1,0 +1,15 @@
+﻿Karen Cudjoe
+CS 342
+
+Homework 3 Part 1
+
+1. Consider the ERD given in Figure 3.21 (The AIRLINE database schema):
+a. Based on what you see in the diagram, explain the difference between flights, flight legs, and leg instances. Please give a short explanatory paragraph.
+The flight keeps track of general airline information, the weekdays on which the flight runs and the flight number. Flights consist of flight legs, which will be the various smaller non-stop segments of the entire flight. The flight leg gives information about the start and end destinations as it has relationships like the departure airport and the arrival airport. A direct flight will have just 1 flight leg, but a flight with layovers will have several flight legs. A leg instance is a specific instance of the flight leg being flown on a particular day and it keeps track of the number of availbale seats, as a flight leg can be flown multiple times. So an entire flight is made up of flight legs, and the leg instance relates the information about thedate, number of available seats of the particular instance of the flight leg. 
+	
+b. The names of some of the attributes in this diagram are underlined with dotted lines. You’ll note that this notation is not explained in the Figure 3.14 cheatsheet. What does it mean?
+The dotted line of some of the attributes in teh ERD diagram shows that that particular attribute is a partial key for a weak entity (Weak entities only have a partial key (dashed underline)). Therefore, it cannot be uniquely identified by its attributes alone, and therefore, it needs to be paired with another attribute to make the candidate key of the table.
+
+c. You’ll note that the “SEAT” entity has a total participation in the “RESERVATION” relationship (i.e., we would write the cardinality constraint {1,*} on the “LEG_INSTANCE” side of the relationship). Why do you think the database modelers did it this way?
+The database modelers probably did it this way because it is possible to reserve multiple seats on the same flight. 
+Each reservation can have multiple seats reserved, but each individual seat can only be reserved once.
