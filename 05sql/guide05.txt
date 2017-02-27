@@ -1,0 +1,40 @@
+Karen Cudjoe
+CS 342
+
+Guide 05
+
+1. Basic SQL (Section 6.3) — Review basic SQL as needed, then write sample queries that:
+a. Use one or more tuple variables (Section 6.3.2).
+SELECT P.firstName, P.lastName, C.status
+FROM Performer AS P, Casting AS C
+WHERE P.lastName = ‘Ford’ AND C.performerid = P.id;
+
+b. Use one or more of the set operations, e.g., UNION, EXCEPT, INTERSECT (Section 6.3.4).
+(SELECT P.firstName, P.lastName
+FROM Performer AS P
+WHERE P.lastName = ‘Hauer’)
+UNION
+(SELECT P.firstName, P.lastName 
+FROM Performer AS P, Casting AS C
+WHERE C.performerid = P.id);
+
+
+2. Advanced SQL (Sections 7.1.1–7.1.5) — This will include more new material; write sample queries that:
+
+a. Select based on a NULL field value (Section 7.1.1).
+SELECT *
+FROM Performer
+WHERE lastName IS NULL; 
+
+b. Implement a nested sub-query, using [NOT] EXISTS, IN, ANY or ALL (Sections 7.1.2–7.1.4).
+SELECT P.firstName, P.lastName
+FROM Performer AS E
+WHERE P.id IN (SELECT C.performerid
+		FROM Casting AS C
+		WHERE C.performerid = P.id);
+
+c. Implement a correlated sub-query (Section 7.1.3).
+SELECT P.firstName, P.lastName
+FROM Performer AS P, Casting AS C
+WHERE P.id = C.performerid;
+
