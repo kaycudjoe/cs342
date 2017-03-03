@@ -1,0 +1,6 @@
+Karen Cudjoe
+CS 342
+
+Calvin LifeWork Database:
+
+Calvin LifeWork prepares students for life after college and helps students dive right in to whatever God is calling them to do. My vision for this project is a database to manage every information relevant to LifeWork and show which students are eligible for the scholarship of $3000 which is given to eligible students at the start of their senior year. This database will include tables like Student, Graduate, Staff, YearRequired, Requirement, Employer. The potential stakeholders for this will be students enrolled in the LifeWork Program, the Career Center Employees and faculty/staff involved in the program.
