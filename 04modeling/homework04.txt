@@ -1,0 +1,76 @@
+Karen Cudjoe
+CS 342
+
+Homework 04 
+
+Do the following exercises:
+
+1. Do exercise 14.31.
+Consider only 1NF, BCNF and 4NF; ignore 2NF and 3NF.
+
+BOOK (Book_title, Author_name, Book_type, List_price, Author_affil, Publisher)
+
+Functional DependenciesBook_title → Publisher, Book_type 
+Book_type → List_price 
+Author_name → Author_affil
+
+a. What normal form is the relation in? Explain your answer.
+The relation is in 1NF because it only contains attribute values which are single atomic (or indivisible). Each value of any attributes in the tuple is a single value. Author_Name could potentially be made up of two values which will be firstName, lastName, but under the assumption that it’s just one value, this is in 1NF. 
+
+The relation is not in BCNF because not all the non-trivial functional dependencies on the left hand side are super keys. 
+If a relation is not in BCNF, then it’s definitely not in 4NF because 4NF is a subset of BCNF and every relation in 4NF is in BCNF —> Any relation which is not in BCNF is definitely not in 4NF. 
+
+
+b. Apply normalization until you cannot decompose the relations further.State the reasons behind each decomposition.
+The relation is not in BCNF so I split everything up into tables to ensure that all the functional dependencies are described by super keys.
+
+- Book(ID, title, typeID, publisher, authorID) - where the Primary Key is ID and typeID is a foreign key
+- BookType(ID, name, list_price)- where the Primary Key is ID
+- Author(ID, name, affiliation) - where the primary key is ID
+- BookAuthor(bookID, authorID, affiliation) - A join table for books with more than 1 author
+
+In Book Table:
+ID —> title, typeID, publisher, authorID
+
+In Book Type table:
+ID —> name, list_price
+
+In Author table:
+ID —> name, affiliation
+
+In BookAuthor table:
+bookID, authorID —> affiliation
+
+The tables are in BCNF as all there exist no non trivial functional dependencies for which the left hand side is not a super key. 
+The tables have no multivalued dependencies and as such are in 4NF. 
+ 
+
+
+2. Do exercise 14.35. Make the following (potentially counter-intuitive) assumptions.
+
+	- Book_name and edition functionally determine year, but not vice-versa.
+	- The title and coauthor names stay the same from edition to edition.
+
+	Your justification of the MVD can be an informal, one-to-two-sentence explanation.
+Book (Book_Name, Author, Edition, Year)
+{Book_name, edition} -> year (FD)
+a. Based on a common-sense understanding of the above data, what are the possible candidate keys of this relation?
+A candidate key is a key that uniquely identifies rows in a table
+{Book_Name, Author, Edition}
+{Book_Name, Author, Year}
+
+b. Justify that this relation has the MVD {Book} → {Author} | {Edition, Year}.
+Reason: The year and edition of a book doesn’t depend on the name of the author. For this reason, the author is included in each instance of the year and edition of the book. Therefore, author is multi determined by book; and edition and year are also multi determined by book.  
+
+Also, from the data, for each book, there exist multiple authors (2 different authors) for the same year and edition. . 
+
+c. What would be the decomposition of this relation based on the above MVD? Evaluate each resulting relation for the highest normal form it possesses.
+Author(book_name, author);
+Edition(book_name, edition, year);
+
+Functional Dependencies
+Book_name —> Author
+Bookname, Edition —> Copyright
+Book_name and Edition are both super keys, thus the relation is in BCNF. 
+
+Also, the relation is in 4NF because there are no multi valued dependencies when it’s broken down.
