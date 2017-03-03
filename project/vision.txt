@@ -1,8 +1,0 @@
-Karen Cudjoe
-CS 342
-
-Career Center Database:
-
-
-
-My vision for this project is a career center database for a college, to handle all information related to the career and vocation of students (and faculty and staff of the college), the services offered by the career center and employer and job information. This database will include tables like Students, Employer/Company, Career Counselor, Job and others. The potential stakeholders for this will be students of the college, faculty and staff of the college, career center employees, employers (recruiters of companies), HR department of the college.
