@@ -1,0 +1,45 @@
+Karen Cudjoe
+CS 342
+
+1. a one-paragraph discussion of where you got your data.
+I obtained most of my data from generatedata.com where I entered in the requirements and field names and had random data generated. I did this for all the tables that pertain to Students, Graduates and Employers information. 
+For the Staff table, I however used real information from the career center. I used information about the 3 career coaches assigned to different students (by industry). 
+I also used real information for the YearRequired and the Requirement tables which I obtained from the Calvin LifeWork webpage. This is the link - http://calvin.edu/lifework/
+
+2. one-paragraph discussion identifying/justifying your chosen normal form.
+My chosen normal form is the BCNF because it is restrictive enough to ensure that the database is created and works as desired. 
+
+3. demonstration that your schema satisfies your chosen normal form.
+Demonstration of BCNF
+Functional Dependencies (non-trivial)
+
+Graduate table
+ID -> firstName, lastName, email, phoneNumber
+
+Staff table
+ID -> firstName, lastName, email, phoneNumber
+
+Student table 
+ID -> firstName, lastName, email, phoneNumber, schoolyear, graduateID, staffID
+
+Employer table
+ID -> firstName, lastName, email, phoneNumber, companyName
+
+YearRequired table
+ID -> name, description, requiredYear
+
+Requirement table
+ID -> name, yearRequiredID
+
+StudentRequirement table
+studentID, requirementID -> yearlevelTaken, scholarship
+
+StudentEmployer table
+studentID, employerID -> position, startDate, endDate
+
+GraduateEmployer table
+graduateID, employerID -> position
+
+Candidate keys are the ID’s in the tables listed under above as they are unique. 
+
+From the above, the schema is in BCNF. This is because all the left hand sides of the non-trivial functional dependencies are super keys.
