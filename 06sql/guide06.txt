@@ -1,0 +1,24 @@
+Guide 6
+
+1. Advanced SQL (Section 7.1, continued) — Write sample queries that:
+
+a. Implement an inner join (Section 7.1.6).
+SELECT P.firstName, P.lastName, m.title, c.status
+FROM ((Movie AS M
+JOIN Performer AS P ON c.performerID = p.ID
+JOIN Casting AS C ON c.movieID = m.id); 
+
+b. Implement an outer join (Section 7.1.6).
+SELECT P.firstName, P.lastName, c.status
+FROM (Performer AS P
+LEFT OUTER JOIN Casting AS C
+ON p.ID = C.performerID);
+
+c. Use an aggregate function (Section 7.1.7).
+SELECT MAX (Score) AS Highest_Score, MIN (Score) AS Lowest_Score, 
+FROM Movie;
+
+d. Use grouping (Section 7.1.8).
+SELECT status, COUNT (*)
+FROM Casting
+GROUP BY status;
