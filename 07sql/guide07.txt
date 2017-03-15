@@ -1,0 +1,53 @@
+Karen Cudjoe
+CS 342
+
+Guide 07
+
+1. Views (Section 7.3, for Monday)
+
+a. Write a simple view specification. For details on Oracle views, see Managing Views.
+CREATE VIEW Viewer
+AS SELECT title, year
+FROM Movie
+
+
+b. Define the following terms (in the comments of your SQL command file).
+
+i. Base Tables: Tables whose tuples are always physically stored in the database.
+
+ii. Join Views: These are views that specify more than one base table or view in the “FROM” clause.
+
+iii. Updateable Join Views: This is a join view where “UPDATE”, “INSERT” and “DELETE” operations are allowed.
+
+iv. Key-Preserved Tables: These are tables for which every key of the table can also be a key of the result of the join. 
+
+v. Views that are implemented via query modification vs materialization. (For details on Oracle materialization, see Materialized View Concepts and Architecture, focusing on the “What is a Materialized View?” and “Why Use Materialized Views” sections.)
+- Query modification: modifying or transforming the view query (submitted by the user) into a query on the underlying base tables.
+- View materialization: physically creating a temporary or permanent view table when the view is first queried or created, and keeping that table on the assumption that other queries on the view will follow. 
+
+
+
+2. Formal languages for the relational model (Chapter 8, for Wednesday)
+
+a. Relational Algebra (read Sections 8.1–8.3 & 8.5) — Write a simple query on the movies database using SELECT (σcondition), PROJECT (πfieldlist), RENAME (ρnewName) and JOIN (⋈condition) (see example queries 1 & 2 in Section 8.5).
+Movie_stars <- σtitle=‘Blade Runner’(Movie)
+Movie_Actors <- (Movie_Stars ⋈ Movie.ID=Casting.movieID)
+RESULT <- πfirstName, lName (Movie_Actors)
+
+
+b. Tuple Relational Calculus (read Sections 8.6.1–8.6.3 & 8.6.8) — Write a simple query on the movies database using the tuple relational calculus queries (see example queries 0 & 1 in Section 8.6.4).
+{p.firstName, p.lastName | Performer(p) AND (∃c)(Casting(c) 
+AND c.status=‘costar’AND c.performerId=p.id)}
+
+
+c. Define the following terms):
+
+i. Existential and universal quantifiers (see Section 8.6.3).
+- Existential: a formula (∃t)(F) is true if there exists some tuple that makes the formula true. ∃(x) means that there exists (at least one) object having a particular property.
+ 
+- Universal quantifiers: (∀t)(F) is true if every possible tuple that can be assigned to free occurrences of the tuple t in the formula is substituted for t, and F is true for every such substitution. (∀x) asserts that the property or relation holds for all members of the domain.
+
+ii. safe expressions (see Section 8.6.8).
+This is an expression in relational calculus that is guaranteed to yield a finite number of tuples as its result. 
+
+Write your solutions either in ASCII (e.g., SELECT_condition), Unicode (e.g., σcondition) or using hand-writing.
