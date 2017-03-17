@@ -1,0 +1,13 @@
+Karen Cudjoe
+CS 342
+Lab 07_3
+
+Do the following for the query on which the view in the previous exercises is based.
+
+a. Write an equivalent query in the relational algebra.
+π firstName, lastName, birthdate (σ birthdate >= '01-JAN-1961' AND birthdate <= '31-DEC-1975' (Person))
+
+b. Write an equivalent query in the domain relational calculus.
+{p.firstName, p.lastName, p.birthdate | Person(p) AND p.birthdate >= '01-JAN-1961' AND p.birthdate <= '31-DEC-1975' }
+
+Don’t worry about querying the concatenated full name or the age; just query the first/last name and birthdate. Store your results in lab07_3.txt (or an image file).
