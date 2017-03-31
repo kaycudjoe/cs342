@@ -1,0 +1,110 @@
+Karen Cudjoe
+CS 342
+
+1. a one-paragraph discussion of where you got your data.
+I obtained most of my data from generatedata.com where I entered in the requirements and field names and had random data generated. I did this for all the tables that pertain to Students, Graduate and Employer information. 
+For the Staff table, I used real information from the career center. I used information about the 3 career coaches assigned to different students (by industry). 
+I also used real information for the YearRequired and the Requirement tables which I obtained from the Calvin LifeWork webpage. This is the link - http://calvin.edu/lifework/
+
+2. one-paragraph discussion identifying/justifying your chosen normal form.
+My chosen normal form is the BCNF because it is restrictive enough to ensure that the database is created and works as desired. 
+
+3. demonstration that your schema satisfies your chosen normal form.
+Demonstration of BCNF and 4NF
+The schema is in 4NF and as such, in BCNF as it doesn’t have any undesirable multivalued dependencies.
+
+Functional Dependencies (non-trivial)
+
+Graduate table
+{ID} -> (firstName, lastName, email, phoneNumber, graduationDate)
+
+Candidate Key: {ID}
+
+This relation is in BCNF because there are no non-trivial FDs where the left hand side is not a superkey
+This relation is in 4NF because there are no non-trivial MVDs where the left hand side is not a superkey
+
+
+
+Staff table
+{ID} -> (firstName, lastName, email, phoneNumber)
+
+Candidate Key: {ID}
+
+This relation is in BCNF because there are no non-trivial FDs where the left hand side is not a superkey
+This relation is in 4NF because there are no non-trivial MVDs where the left hand side is not a superkey
+
+
+
+Student table 
+{ID} -> (firstName, lastName, email, phoneNumber, graduationDate, scholarshipreceivedate, graduateID, staffID)
+
+Candidate Key: {ID}
+
+This relation is in BCNF because there are no non-trivial FDs where the left hand side is not a superkey
+This relation is in 4NF because there are no non-trivial MVDs where the left hand side is not a superkey
+
+
+
+Employer table
+{ID} -> (firstName, lastName, email, phoneNumber, companyName)
+
+Candidate Key: {ID}
+
+This relation is in BCNF because there are no non-trivial FDs where the left hand side is not a superkey
+This relation is in 4NF because there are no non-trivial MVDs where the left hand side is not a superkey
+
+
+
+YearRequired table
+{ID} -> (name, description, requiredYear)
+
+Candidate Key: {ID}
+
+This relation is in BCNF because there are no non-trivial FDs where the left hand side is not a superkey
+This relation is in 4NF because there are no non-trivial MVDs where the left hand side is not a superkey
+
+
+
+Requirement table
+{ID} -> (name, yearRequiredID)
+
+Candidate Key: {ID}
+
+This relation is in BCNF because there are no non-trivial FDs where the left hand side is not a superkey
+This relation is in 4NF because there are no non-trivial MVDs where the left hand side is not a superkey
+
+
+
+StudentRequirement table
+{studentID, requirementID} -> (yearlevelTaken, scholarship)
+
+Candidate Keys: {studentID, requirementID}
+
+This relation is in BCNF because there are no non-trivial FDs where the left hand side is not a superkey
+This relation is in 4NF because there are no non-trivial MVDs where the left hand side is not a superkey
+
+
+
+
+StudentEmployer table
+{studentID, employerID} -> (position, startDate, endDate)
+
+
+Candidate Keys: {studentID, employerID}
+
+This relation is in BCNF because there are no non-trivial FDs where the left hand side is not a superkey
+This relation is in 4NF because there are no non-trivial MVDs where the left hand side is not a superkey
+
+
+
+GraduateEmployer table
+{graduateID, employerID} -> (position)
+
+Candidate Keys: {graduateID, employerID}
+
+This relation is in BCNF because there are no non-trivial FDs where the left hand side is not a superkey
+This relation is in 4NF because there are no non-trivial MVDs where the left hand side is not a superkey
+
+
+
+From the above, it can be concluded that this schema is in 4NF because there are no non-trivial MVDs where the left hand side is not a superkey.
