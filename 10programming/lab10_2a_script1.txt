@@ -1,0 +1,30 @@
+Exercise 10.2.a
+
+a. The Lost Update Problem 
+
+SQL> set autocommit on;
+
+—- First read statement
+SQL> SELECT rank FROM Movie WHERE ID = 238072;
+
+      RANK
+----------
+       7.5
+
+
+—- This is the lost update
+SQL> UPDATE Movie SET RANK = 8 WHERE ID = 238072;
+
+1 row updated.
+
+
+Commit complete.
+—- The update to the rank is lost
+SQL> SELECT rank FROM Movie WHERE ID = 238072;
+
+      RANK
+----------
+         9
+	   
+
+SQL> spool off;
