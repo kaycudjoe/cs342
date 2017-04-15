@@ -1,0 +1,28 @@
+10.2.a
+
+a. The Lost Update Problem
+
+-— Second read
+SQL> SELECT Rank FROM Movie WHERE ID = 238072;
+
+      RANK
+----------
+       7.5
+	   
+
+—- Second update overwrites first 
+SQL> UPDATE Movie SET Rank = 9 WHERE ID = 238072;
+
+1 row updated.
+
+
+Commit complete.
+—- Rank is updated to the value in the second update
+SQL> SELECT Rank FROM Movie WHERE ID = 238072;
+
+      RANK
+----------
+         9
+	   
+	   
+SQL> spool off;
