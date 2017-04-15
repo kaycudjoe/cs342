@@ -1,0 +1,41 @@
+Karen Cudjoe
+CS 342
+Lab10_1.txt
+
+Exercise 10.1
+
+Session 1					Session 2		Comments
+Query the movie table.				Query the movie table.	Return the same result
+Delete a movie and query the modified table.	repeat the query…	I expect that the first session will not have the deleted movie and the second session will have the deleted movie. 
+Rollback and query.				repeat…	 		Return the same result
+Add a new movie and query.			repeat…	 		I expect the first session to have the new movie, and the second session to not have the new movie. 
+Commit.						repeat…	 		Return the same result
+
+
+Step 1: Both queries returned the same results - 41 rows. Happened just as I expected. 
+
+Step 2: The first session where the movie was deleted returned only 40 rows from the movie table. The second session however still returned 41 rows. This happened just as I expected. 
+
+Step 3: Both sessions returned all 41 movies. This happened just as I expected. 
+
+Step 4: The first session where the movie was inserted returned 42 rows whereas the second session didn't see the change and still returned 41 rows. 
+
+Step 5: Both sessions now return the same result. This happened just as I expected. 
+
+
+Experiment a bit with some SQL*Plus sessions, making changes, exiting and restarting the session and then answer the following questions.
+
+ 
+a. Does Oracle handle the transaction life-cycle (see Figure 20.4) with respect to starting and stopping SQL*Plus sessions?
+Yes, Oracle handles the transaction life-cycle with respect to starting and stopping SQL*Plus sessions. The changes that were partially committed become committed when the session is stopped. The changes that were made in the database still exist when the session is started. 
+
+
+b. Can we implement any of the ACID properties using START-TRANSACTION/SAVEPOINT/ROLLBACK/COMMIT?
+From the existence of locking mechanisms, the ACID properties cannot be fully implemented by just using START-TRANSACTION/SAVEPOINT/ROLLBACK/COMMIT. 
+Atomicity: Yes, these commands can be used to implement atomicity. If a part of the transaction fails, it will be rolled back as it doesn’t commit part of it.  
+
+Consistency: Yes, these commands can be used to implement consistency. This is because if you make a transaction that violates any part of the schema, it will run a rollback and will not commit. 
+
+Isolation: No, these commands cannot be used to implement isolation. This is because once a commit is made for a transaction, it is possible for it to affect other running transactions. 
+
+Durability: It is possible to use savepoint as a mark of a point in a transaction that can be recovered in an event of a crash. Once the system is restored, the point is then recovered and committed.  
