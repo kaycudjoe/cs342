@@ -1,0 +1,27 @@
+-- Exercise 10.3.a
+
+SQL> lock table Movie IN ROW SHARE MODE;
+
+Table(s) Locked.
+
+
+SQL> select rank from Movie where id = 238071;
+
+      RANK
+----------
+       8.5
+
+-- updating the table within the lock
+SQL> update Movie set rank=8.7 where id = 238071;
+
+1 row updated.
+
+SQL> select rank from Movie where id = 238071;
+
+      RANK
+----------
+         8.7
+-- unlocking the table
+SQL> commit;
+
+Commit complete.
