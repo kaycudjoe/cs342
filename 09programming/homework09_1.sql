@@ -17,12 +17,9 @@ Demonstrate what you’ve accomplished by reviewing the execution plans for each
 For testing purposes, it can be helpful to run these queries on the smaller IMDB; this works provided that you relax the requirements a bit (e.g., directors with more than 2 rather than 200 movies, etc.).
 */
 
-
-CLEAR SCREEN;
 SET AUTOTRACE ON;
 SET SERVEROUTPUT ON;
 SET TIMING ON;
-SET WRAP OFF;
 
 —- 1. Get the movies directed by Clint Eastwood.
 -- First try
@@ -32,10 +29,53 @@ WHERE m.id = md.movieId
 AND d.id = md.directorId
 AND d.firstName = 'Clint'
 AND d.lastName = 'Eastwood';
--- Runtime: 0.03 seconds.
 
+/*
+Elapsed: 00:00:00.12
+
+Execution Plan
+----------------------------------------------------------
+Plan hash value: 3700107762
+
+--------------------------------------------------------------------------------
+--------------
+
+| Id  | Operation                    | Name          | Rows  | Bytes | Cost (%CP
+U)| Time     |
+
+--------------------------------------------------------------------------------
+--------------
+
+|   0 | SELECT STATEMENT             |               |     1 |    56 |   304   (
+2)| 00:00:04 |
+
+|   1 |  NESTED LOOPS                |               |       |       |
+  |          |
+
+|   2 |   NESTED LOOPS               |               |     1 |    56 |   304   (
+2)| 00:00:04 |
+
+|*  3 |    HASH JOIN                 |               |     1 |    31 |   302   (
+2)| 00:00:04 |
+
+|*  4 |     TABLE ACCESS FULL        | DIRECTOR      |     1 |    21 |    86   (
+2)| 00:00:02 |
+
+|   5 |     TABLE ACCESS FULL        | MOVIEDIRECTOR |   380K|  3717K|   215   (
+1)| 00:00:03 |
+
+|*  6 |    INDEX UNIQUE SCAN         | SYS_C008002   |     1 |       |     1   (
+0)| 00:00:01 |
+
+|   7 |   TABLE ACCESS BY INDEX ROWID| MOVIE         |     1 |    25 |     2   (
+0)| 00:00:01 |
+
+--------------------------------------------------------------------------------
+
+*/
 
 --Second try
+CREATE INDEX dIndex ON Director(firstName, lastName);
 CREATE Index mdIndex ON MovieDirector(directorId, movieId);
 
 SELECT m.ID, m.name
@@ -44,29 +84,67 @@ where d.id = md.directorId
 and md.movieId = m.id
 and d.firstName = 'Clint'
 and d.lastName = 'Eastwood';
-	-- Runtime: 0.01 seconds
-drop index mdIndex;
 
-
--- Third try
-CREATE INDEX dIndex ON Director(firstName, lastName);
-
-SELECT m.id, m.name
-FROM Movie m, Director d, MovieDirector md
-WHERE m.id = md.movieId
-AND d.id = md.directorId
-AND d.firstName = 'Clint'
-AND d.lastName = 'Eastwood';
-
+DROP index mdIndex;
 DROP INDEX dIndex;
--- This averaged a runtime of 0.03 seconds.
 
 /*
-My three attempts are listed above. My first attempt was done without an index.
-I used an index on the MovieDirector table for the second one and an index on the
-Director table for the third one.
-The attempt using the index on the moviedirector table had the best average run time.
-In try 2, the database does a 'Table Access by Index RowID' operation on the MovieDirector instead of a 'Table Access Full'.
-In try 3, the database does a 'Table Access by Index RowID' operation on the Director instead of a 'Table Access Full'.
-I choose attempt two because the index used on the MovieDirector table makes the run time faster than the two other tries as it doesn’t use a 'Table Access Full'.
+Elapsed: 00:00:00.07
+
+Execution Plan
+----------------------------------------------------------
+Plan hash value: 3389412046
+
+--------------------------------------------------------------------------------
+--------------
+
+| Id  | Operation                      | Name        | Rows  | Bytes | Cost (%CP
+U)| Time     |
+
+--------------------------------------------------------------------------------
+--------------
+
+|   0 | SELECT STATEMENT               |             |     4 |   224 |    12   (
+0)| 00:00:01 |
+
+|   1 |  NESTED LOOPS                  |             |       |       |
+  |          |
+
+|   2 |   NESTED LOOPS                 |             |     4 |   224 |    12   (
+0)| 00:00:01 |
+
+|   3 |    NESTED LOOPS                |             |     4 |   124 |     4   (
+0)| 00:00:01 |
+
+|   4 |     TABLE ACCESS BY INDEX ROWID| DIRECTOR    |     1 |    21 |     2   (
+0)| 00:00:01 |
+
+|*  5 |      INDEX RANGE SCAN          | DINDEX      |     1 |       |     1   (
+0)| 00:00:01 |
+
+|*  6 |     INDEX RANGE SCAN           | MDINDEX     |     4 |    40 |     2   (
+0)| 00:00:01 |
+
+|*  7 |    INDEX UNIQUE SCAN           | SYS_C008002 |     1 |       |     1   (
+0)| 00:00:01 |
+
+|   8 |   TABLE ACCESS BY INDEX ROWID  | MOVIE       |     1 |    25 |     2   (
+0)| 00:00:01 |
+
+--------------------------------------------------------------------------------
 */
+
+/*
+My attempts are listed above. 
+My first attempt was done without an index. I used an index on the MovieDirector table and an index on the Director table for the rest. 
+I could have created an index on the Director table using the ID. This is however not necessary as Oracle builds indexes on keys by itself. 
+
+The query uses INDEX RANGE SCAN, TABLE ACCESS BY INDEX ROWID and INDEX UNIQUE SCAN. 
+The indexes used helped because an INDEX RANGE SCAN is done on the Director and MovieDirector tables, which doesnt read in the whole table, unlike the query without the index which uses a TABLE ACCESS FULL.
+This makes it much faster.  
+
+The query which uses an index on the MovieDirector table, switched a hash join to a nested loop, which is faster. 
+*/
+
+
+
