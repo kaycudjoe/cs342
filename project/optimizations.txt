@@ -1,0 +1,112 @@
+/* 
+Query 1: 
+What the query returns: This query returns the IDs, firstName, lastName and scholarship receive date, assigned staff member, assgigned graduate and all employees (past/present) of all scholarship recipients who have graduation dates in 2017. 
+Who would care about the results: The career center staff and organizers of the Calvin LifeWork program will care about the results. 
+The purpose of this query is to recognize the recipients of the scholarship as well as to recognize and applaud their assigned graduates, employers and career center staff members whose staudents receive scholarships, and to assign these graduates to students since their work with the current student is done. 
+*/
+-- Fulfils a join of at least four tables
+-- Fulfils proper comparisons of NULL values
+SELECT s.ID, s.firstName ||' , '|| s.lastName, s.scholarshipreceivedate, sc.firstName ||' , '|| sc.lastName, g.firstName ||' , '|| g.lastName, e.firstName ||' , '|| e.lastName
+FROM Student s, Staff sc, Graduate g, Employer e, StudentEmployer se
+WHERE s.graduationDate >= '01-JAN-2017' AND s.graduationDate <= '31-DEC-2017'
+AND s.scholarshipreceivedate IS NOT NULL
+AND s.graduateID = g.ID
+AND s.staffID = sc.ID
+AND se.studentID = s.ID
+AND se.employerID = e.ID; 
+
+
+Elapsed: 00:00:00.01
+
+Execution Plan
+----------------------------------------------------------
+Plan hash value: 2616525090
+
+--------------------------------------------------------------------------------
+------------------
+
+| Id  | Operation                      | Name            | Rows  | Bytes | Cost
+(%CPU)| Time     |
+
+--------------------------------------------------------------------------------
+------------------
+
+|   0 | SELECT STATEMENT               |                 |     3 |   582 |    11
+  (10)| 00:00:01 |
+
+|*  1 |  HASH JOIN                     |                 |     3 |   582 |    11
+  (10)| 00:00:01 |
+
+|   2 |   TABLE ACCESS FULL            | STUDENTEMPLOYER |    15 |   390 |     2
+   (0)| 00:00:01 |
+
+|   3 |   MERGE JOIN CARTESIAN         |                 |    70 | 11760 |     9
+  (12)| 00:00:01 |
+
+|   4 |    NESTED LOOPS                |                 |       |       |
+      |          |
+
+|   5 |     NESTED LOOPS               |                 |     2 |   274 |     7
+  (15)| 00:00:01 |
+
+|*  6 |      HASH JOIN                 |                 |     2 |   212 |     5
+  (20)| 00:00:01 |
+
+|*  7 |       TABLE ACCESS FULL        | STUDENT         |     2 |   150 |     2
+   (0)| 00:00:01 |
+
+|   8 |       TABLE ACCESS FULL        | STAFF           |     4 |   124 |     2
+   (0)| 00:00:01 |
+
+|*  9 |      INDEX UNIQUE SCAN         | SYS_C006997     |     1 |       |     0
+   (0)| 00:00:01 |
+
+|  10 |     TABLE ACCESS BY INDEX ROWID| GRADUATE        |     1 |    31 |     1
+   (0)| 00:00:01 |
+
+|  11 |    BUFFER SORT                 |                 |    35 |  1085 |     8
+  (13)| 00:00:01 |
+
+|  12 |     TABLE ACCESS FULL          | EMPLOYER        |    35 |  1085 |     1
+   (0)| 00:00:01 |
+
+--------------------------------------------------------------------------------
+------------------
+
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   1 - access("SE"."STUDENTID"="S"."ID" AND "SE"."EMPLOYERID"="E"."ID")
+   6 - access("S"."STAFFID"="SC"."ID")
+   7 - filter("S"."SCHOLARSHIPRECEIVEDATE" IS NOT NULL AND
+              "S"."GRADUATIONDATE">=TO_DATE(' 2017-01-01 00:00:00', 'syyyy-mm-dd
+ hh24:mi:ss') AND
+
+              "S"."GRADUATIONDATE"<=TO_DATE(' 2017-12-31 00:00:00', 'syyyy-mm-dd
+ hh24:mi:ss'))
+
+   9 - access("S"."GRADUATEID"="G"."ID")
+
+Note
+-----
+   - dynamic sampling used for this statement (level=2)
+
+
+Statistics
+----------------------------------------------------------
+          0  recursive calls
+          0  db block gets
+         41  consistent gets
+          0  physical reads
+          0  redo size
+       1263  bytes sent via SQL*Net to client
+        523  bytes received via SQL*Net from client
+          2  SQL*Net roundtrips to/from client
+          0  sorts (memory)
+          0  sorts (disk)
+          4  rows processed
+
+		  
+		  
+- There is no need for indexing here as the tables are joined on their primary keys which are indexed by Oracle. 
