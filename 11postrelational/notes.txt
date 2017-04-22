@@ -1,1 +1,0 @@
-c. Exploring the project structure — How do the external libraries (in the project pane) relate to J2SE and J2EE?
