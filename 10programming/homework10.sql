@@ -5,13 +5,13 @@ Homework 10
 4/20/2017
 */
 
-CREATE OR REPLACE PROCEDURE transferRank (sourceId IN Movie.id%type, destinationId IN Movie.id%type, transAmount IN FLOAT) 
+CREATE OR REPLACE PROCEDURE transferRank (sourceIdIn IN Movie.id%type, destinationIdIn IN Movie.id%type, transAmount IN FLOAT) 
 AS
 	x Movie.rank%type;
 	low_exception EXCEPTION;
 	negtransAmount EXCEPTION;
 BEGIN
-	SELECT rank INTO x FROM Movie WHERE id=sourceId 
+	SELECT rank INTO x FROM Movie WHERE id=sourceIdIn 
 	FOR UPDATE OF rank;
 	
 	IF x < transAmount THEN
@@ -23,12 +23,12 @@ BEGIN
 	
 	UPDATE Movie 
 	SET rank =(rank-transAmount) 
-	WHERE id = sourceId;
+	WHERE id = sourceIdIn;
 	COMMIT;
 	
 	UPDATE Movie 
 	SET rank =(rank+transAmount) 
-	WHERE id = destinationId;
+	WHERE id = destinationIdIn;
 	COMMIT;
 	
 EXCEPTION
