@@ -1,0 +1,90 @@
+Karen Cudjoe
+CS 342
+Guide 12
+4/24/2017
+
+1. Read specified sections of Java Persistence and explain the given concepts.
+
+a. Chapter 3, “What is Java persistence?”
+
+i. Persistence in Java and how it relates to the impedance mismatch discussed in unit 8
+The Java Persistence API (JPA) is a Java specification for accessing, persisting, and managing data between Java objects / classes and a relational database.
+Impedance mismatch refer to the differences that occur between the database model and the programming language model.Thus, the java persistence API helps avoid impedance mismatch by describing the management of relational data in applications using the java platform.
+ii. POJOs
+In software engineering, a plain old Java object (POJO) is an ordinary Java object, not bound by any special restriction and not requiring any class path.
+
+
+b. Chapter 4, “Persistence Products, Which to Use?” — Name 2–3 of the major JPA implementations and indicate which one we are using in this class.
+Open JPA: Application Server - Geronimo, WebSphere Application Server (8.0)
+EclipseLink: This is what we’re using in class. Application Server - Oracle Weblogic (12c), Glassfish (v3)
+TopLink: Application Server - Oracle Weblogic (12c), OracleAS (10.1.3)
+
+
+c. Chapter 5, “Mapping, Round Pegs into Square Holes” — Annotate this Java class for object-relational mapping using Java Annotations with the property access type.
+
+@Entity
+public class Solder {
+	@transient
+	@ManyToMany    	private String name;   	@transient   	@ManyToOne    	private String rank;    	@id    	private long serialNumber;
+   
+public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+public String getRank() { return rank; }
+    public void setRank(String rank) { this.rank = rank; }
+
+public String getSerialNumber() { return serialNumber; }
+    public void setSerialNumber(String serialNumber) { this.serialNumber = serialNumber; }
+}
+
+In particular, add annotations for the following.
+
+- Persistence Entity — Annotate the class as a persistence entity (Chapter 5 overview).
+- OID — Annotate the object ID (Section 5.2).
+- Basic fields — Annotate the non-ID fields (Section 5.6).
+- Relationships — Add new fields/accessors/annotations that exemplify the following JPA relationships (Section 5.7 overview & Sections 5.7.2–5.7.4).
+	- A many-to-one relationship to a commander — The commander is another Solder object.
+	- A many-to-many relationship to a Battle class — You don’t need to add the Battle class.
+
+You don’t need to run this code, but be familiar with the concepts and the annotations that implement them.
+
+
+d. Chapter 6, “Runtime, Doing the Hokey Pokey (EntityManager)”
+i. Entity Manager (Chapter 6 overview)
+The EntityManager provides API for creating queries, accessing transactions, and finding, persisting, merging and deleting objects. The JPA API can be used in any Java environment including JSE and JEE.
+
+ii. Injection — We’ll use J2EE dependency injection to access to a container-managed EntityManager (Chapter 6 overview).
+An EntityManager can be created through an EntityManagerFactory, or can be injected into an instance variable in an EJB SessionBean, or can be looked up in JNDI in a JEE server.
+
+iii. Persistence operations — Name the four basic persistence operations (Section 6.2).
+- Persist (INSERT)
+- Merge (UPDATE)
+- Remove (DELETE)
+- Find (SELECT)
+
+
+
+
+2. Review Intellij’s support to database connections and JPA.
+a. Create a new J2EE application as you created the JDK/J2EE application in the previous lab, activating the following “Java Enterprise” libraries/frameworks.
+
+- Web Application 3.1
+- J2EE Persistence 2.1; Provider: EclipseLink; setting up the library later
+- RESTful Web Service; using the library from the GlassFish installation
+
+Store it in your repo under cs342/12postrelational/Lab12.
+
+
+b. Databases and SQL — Note that Oracle must be running with the CPDB database loaded for this data connection to work.
+
+i. Open the Intellij database tool pane by choosing View→Tool Windows→Database.
+
+ii. Create a new data source for your existing Oracle CPDB database, name it cpdb&localhost and make sure that “Test Connection” works properly. You may need to download a required library (to make IDEA happy; GlassFish already has all the required libraries).
+
+iii. Fetch the records in the Person table by double-clicking on the table name in the Database pane.
+
+
+c. Java Persistence API (JPA)
+i. Open the Intellij “Persistence” tool pane by choosing View→Tool Windows→Persistence.
+
+Store a (low-resolution) screen dump image of your new app in the IDE. It should look something like the one shown to the right (but be lower-resolution). You’ll use this app as the basis for lab 12.
