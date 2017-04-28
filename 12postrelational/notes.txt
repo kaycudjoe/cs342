@@ -1,0 +1,20 @@
+Exercise 12.1
+1. Compare and contrast the database connection you built in Guide 12 (in Intellij IDEA) and this database connection (in GlassFish). 
+Do we need both? If so, explain why; if not, explain why not.
+The database connection I built in Guide 12 is a JDBC connection between the Oracle CPDB database and the INTELLIJ IDE. The database connection (in GlassFish) is between GlassFish and the oracle CPDB database. 
+Yes, we need both because the connections are necessary for connecting different parts to the database. 
+
+
+Exerceise 12.2
+1. How does Intellij map the database tables into Java entity classes?
+2. What is the PK class do?
+3. Does Intellij default to field or property annotations?
+
+
+Exercie 12.3
+1. Does this application perform marshalling? If so, explain what the marshalling does; if not, explain why it’s not needed.
+2. Does this code perform any injection? Again, explain…
+3. What does the entity manager do in this code, if anything?
+
+Exercise 12.4
+1. How does JPA return the household and team entities related to a given person?
