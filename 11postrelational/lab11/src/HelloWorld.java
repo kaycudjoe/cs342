@@ -2,11 +2,9 @@
  * Created by kec32 on 4/21/2017.
  */
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 
-// The Java class will be hosted at the URI path "/helloworld"
+// The Java class will be hosted at the URI path "/hello"
 @Path("/hello")
 public class HelloWorld {
     // The Java method will process HTTP GET requests
@@ -17,4 +15,38 @@ public class HelloWorld {
         // Return some cliched textual content
         return "Hello World";
     }
+
+    @Path("/api")
+    @GET
+    @Produces("test/plain")
+    public String getSimpleMessage() {
+        return "Getting...";
+    }
+
+    @Path("/api/{x}")
+    @PUT
+    @Produces("text/plain")
+    public String putIntegerTo(@PathParam("x") Integer x){
+        return "Putting: " + x;
+    }
+
+
+    @Path("/api/{s}")
+    @POST
+    @Produces("text/plain")
+    public String postStringTo(@PathParam("s") String s){
+        return "Posting: " + s;
+    }
+
+
+    @Path("/api/{x}")
+    @DELETE
+    @Consumes("text/plain")
+    public String deleteIntegerFrom(@PathParam("x") Integer x){
+        if (x < 0 || x > 9) {
+            return "This Integer is not between 0 and 9";
+        }
+        return "Deleting: " + x;
+    }
 }
+
