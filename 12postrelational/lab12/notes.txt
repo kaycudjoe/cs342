@@ -1,0 +1,35 @@
+Exercise 12.1
+1. Compare and contrast the database connection you built in Guide 12 (in IntelliJ IDEA) and this database connection (in GlassFish). 
+Do we need both? If so, explain why; if not, explain why not.
+The database connection I built in Guide 12 is a JDBC connection between the Oracle CPDB database and the INTELLIJ IDE. The database connection (in GlassFish) is between GlassFish and the oracle CPDB database. 
+Yes, we need both because the connections are necessary for connecting different parts to the database. 
+
+
+Exercise 12.2
+1. How does IntelliJ map the database tables into Java entity classes?
+It creates a class for each relation, and has the attributes of the relation as the instance variables of the class. 
+IntelliJ maps the database tables into Java entity classes using JPA. This generates the managed entity classes and 0/R mapping from the imported database schema. 
+
+2. What is the PK class do?
+The PK class checks the accuracy of the composite Primary Key for the PersonTeam table. This ensures that the rows of this table can be identified uniquely and used to identify person-team relationships.
+
+3. Does IntelliJ default to field or property annotations?
+IntelliJ defaults to property annotations, as there are accessors for all instance variables. 
+
+
+Exercise 12.3
+1. Does this application perform marshalling? If so, explain what the marshalling does; if not, explain why it’s not needed.
+Yes, this application performs marshalling. Marshalling converts the representation of the database object into JSON format. This makes it suitable for transmission.
+
+2. Does this code perform any injection? Again, explain…
+Yes, the code performs injection. the EntityManager is injected into the CPDBResource class. This is done so that this class can access the entities stored by the EntityManager.
+
+3. What does the entity manager do in this code, if anything?
+It is used to access the objects in the database.
+Given an ID, the Entity Manager is used to find a person. It also creates a query for getting all the people in the database. 
+
+
+Exercise 12.4
+1. How does JPA return the household and team entities related to a given person?
+It returns them as a JSON object (objects for teams) inside the Person JSON object.
+Households are single objects and teams are lists of objects.
