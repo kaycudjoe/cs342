@@ -118,10 +118,3 @@ public class CPDBResource {
     }
 
 }
-
-
-
-
-
-
-}
