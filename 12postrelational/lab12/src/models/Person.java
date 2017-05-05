@@ -126,8 +126,8 @@ public class Person {
 
     @ManyToMany
     @JoinTable(name = "PERSONTEAM", schema = "CPDB",
-                joinColumns = @JoinColumn(name = "PERSONID", referencedColumnName = "ID", nullable = false),
-                inverseJoinColumns = @JoinColumn(name = "TEAMNAME", referencedColumnName = "NAME", nullable = false))
+            joinColumns = @JoinColumn(name = "PERSONID", referencedColumnName = "ID", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "TEAMNAME", referencedColumnName = "NAME", nullable = false))
 
     public List<Team> getTeams() { return teams; }
 
