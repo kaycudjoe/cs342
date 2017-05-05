@@ -1,10 +1,9 @@
 package models;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Time;
+import java.util.List;
+
 
 /**
  * Created by kec32 on 4/28/2017.
@@ -21,7 +20,11 @@ public class Person {
     private Time birthdate;
     private String householdrole;
     private String homegrouprole;
+    private Household household;
+    private List<Team> teams;
 
+    @GeneratedValue(generator = "cpdbSequence")
+    @SequenceGenerator(name = "cpdbSequence", sequenceName = "cpdb_sequence", allocationSize = 1)
     @Id
     @Column(name = "ID")
     public long getId() {
@@ -111,6 +114,24 @@ public class Person {
     public void setHomegrouprole(String homegrouprole) {
         this.homegrouprole = homegrouprole;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "HOUSEHOLDID", referencedColumnName = "ID")
+    public Household getHousehold() {
+        return household;
+    }
+    public void setHousehold(Household householdId) {
+        this.household = householdId;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "PERSONTEAM", schema = "CPDB",
+                joinColumns = @JoinColumn(name = "PERSONID", referencedColumnName = "ID", nullable = false),
+                inverseJoinColumns = @JoinColumn(name = "TEAMNAME", referencedColumnName = "NAME", nullable = false))
+
+    public List<Team> getTeams() { return teams; }
+
+    public void setTeams(List<Team> team) {this.teams = team; }
 
     @Override
     public boolean equals(Object o) {
