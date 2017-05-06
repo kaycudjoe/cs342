@@ -1,17 +1,19 @@
 Exercise 13.1
 
 a. Compare and contrast the store.put() command used here for KVLite and the em.persist() command you used for the GlassFish entity manager in the previous lab.
-store.put() creates a new key-value  pair record in the database or updates an already existing record with that key.
-em.persist() can only create new records as opposed to updating previous ones.
+- store.put() creates a new key-value pair record in the store or updates an alreading existing record with that key whereas em.persist() - This can only create new records, but cannot be used to update existing ones. 
+- store.put() can write directly to the database whereas em.persist() uses mapping between the java and relational object to write to the databases. 
 
 b. Compare and contrast the store.put() command with the standard Java hashtable’s myHashTable.put() command.
-Store.put() and myHashTable.put() basically do the same thing as they both create a key to reference a specific value associated with that key.
-myHashTable.put() writes to the hash table which is stored in the  main memory  whereas Store.put() writes to the KVLite store.
+Both use key-value mapping. 
+myHashTable.put() writes to the hash table which is stored in the  main memory  whereas Store.put() writes to the KVLite store, which is persistent. 
+
 
 Exercise 13.2
 a. Compare and contrast KVLite keys with relational database keys.
-Foreign keys in relational databases work both ways as it create a relationship between the tables.
-The KVLite keys however work in just one direction.
+KVLite keys refer to the value stores with the keys. These cannot be mapped to another entity, and as such, cannot define a relationship between two entities. 
+Relational database keys identify the rest of the record and create a relationship between the entities. 
+
 
 Exercise 13.3
 a. So far, the implementation has only dealt with records in one relational table, Movie.
@@ -20,4 +22,4 @@ The key-value database implements the one-to-many relationships using a tree str
 
 b.   KVLite requires that there be a key, but it is possible to have an “empty” value.
 Such a value can be created using Value.createValue(new byte[0]). Where might one need such a construct?
-To represent a NULL value (like NULL in relational databases)
+For reversing  the directory structure, which is useful in dealing with many-to-many relationships.
