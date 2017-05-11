@@ -1,0 +1,27 @@
+;;; 
+Export: Release 11.2.0.2.0 - Production on Thu May 11 17:00:31 2017
+
+Copyright (c) 1982, 2009, Oracle and/or its affiliates.  All rights reserved.
+;;; 
+Connected to: Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+Starting "CALVINLW"."SYS_EXPORT_TABLE_01":  calvinLW/******** parfile=calvinLW.par 
+Estimate in progress using BLOCKS method...
+Processing object type TABLE_EXPORT/TABLE/TABLE_DATA
+Total estimation using BLOCKS method: 576 KB
+Processing object type TABLE_EXPORT/TABLE/TABLE
+Processing object type TABLE_EXPORT/TABLE/CONSTRAINT/CONSTRAINT
+Processing object type TABLE_EXPORT/TABLE/CONSTRAINT/REF_CONSTRAINT
+. . exported "CALVINLW"."EMPLOYER"                       9.804 KB      35 rows
+. . exported "CALVINLW"."GRADUATE"                       9.476 KB      36 rows
+. . exported "CALVINLW"."GRADUATEEMPLOYER"               6.257 KB      20 rows
+. . exported "CALVINLW"."REQUIREMENT"                    6.929 KB      27 rows
+. . exported "CALVINLW"."STAFF"                          6.812 KB       4 rows
+. . exported "CALVINLW"."STUDENT"                        11.19 KB      40 rows
+. . exported "CALVINLW"."STUDENTEMPLOYER"                7.257 KB      15 rows
+. . exported "CALVINLW"."STUDENTREQUIREMENT"             10.17 KB     184 rows
+. . exported "CALVINLW"."YEARREQUIRED"                   6.718 KB       4 rows
+Master table "CALVINLW"."SYS_EXPORT_TABLE_01" successfully loaded/unloaded
+******************************************************************************
+Dump file set for CALVINLW.SYS_EXPORT_TABLE_01 is:
+  C:\USERS\KEC32\DOCUMENTS\PROJECT\CALVINLW.DMP
+Job "CALVINLW"."SYS_EXPORT_TABLE_01" successfully completed at 17:00:34

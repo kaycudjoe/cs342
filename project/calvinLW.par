@@ -1,0 +1,5 @@
+DIRECTORY=exp_dir
+DUMPFILE=calvinLW.dmp 
+LOGFILE=calvinLW.log
+TABLES=calvinLW.Graduate,calvinLW.Staff,calvinLW.Student,calvinLW.Employer,calvinLW.YearRequired,
+calvinLW.Requirement,calvinLW.StudentRequirement,calvinLW.StudentEmployer,calvinLW.GraduateEmployer

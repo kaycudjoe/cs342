@@ -1,8 +1,6 @@
--- Create the Calvin LifeWork user and database. 
-
 -- Create the user.
-DROP USER kec32 CASCADE;
-CREATE USER kec32 
+DROP USER calvinLW CASCADE;
+CREATE USER calvinLW
 	IDENTIFIED BY kec32password
 	QUOTA 5M ON System;
 GRANT 
@@ -15,11 +13,8 @@ GRANT
 	CREATE PROCEDURE,
 	CREATE TRIGGER,
 	UNLIMITED TABLESPACE
-	TO kec32;
+	TO calvinLW;
 
--- Connect to the user's account/schema.
-CONNECT kec32/kec32password;
-
--- (Re)Create the database.
-DEFINE kec32=S:\CS342\project\Design
-@&kec32\load
+DROP DIRECTORY exp_dir;
+CREATE DIRECTORY exp_dir AS 'C:\Users\kec32\Documents\project';
+GRANT READ, WRITE ON DIRECTORY exp_dir to calvinLW;
