@@ -36,35 +36,6 @@ public class StudentemployerPK implements Serializable {
         this.employerID = employerID;
     }
 
-    @Column(name = "POSITION")
-    @Id
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    @Column(name = "STARTDATE")
-    @Id
-    public Time getStartdate() {
-        return startdate;
-    }
-
-    public void setStartdate(Time startdate) {
-        this.startdate = startdate;
-    }
-
-    @Column(name = "ENDDATE")
-    @Id
-    public Time getEnddate() {
-        return enddate;
-    }
-
-    public void setEnddate(Time enddate) {
-        this.enddate = enddate;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -75,9 +46,6 @@ public class StudentemployerPK implements Serializable {
 
         if (studentID != this.studentID) return false;
         if (employerID != this.employerID) return false;
-        if (position != null ? !position.equals(that.position) : that.position != null) return false;
-        if (startdate != null ? !startdate.equals(that.startdate) : that.startdate != null) return false;
-        if (enddate != null ? !enddate.equals(that.enddate) : that.enddate != null) return false;
 
         return true;
     }
@@ -86,9 +54,6 @@ public class StudentemployerPK implements Serializable {
     public int hashCode() {
         int result = (int) (studentID ^ (studentID >>> 32));
         result = 31 * result + (int) (employerID ^ (employerID >>> 32));
-        result = 31 * result + (position != null ? position.hashCode() : 0);
-        result = 31 * result + (startdate != null ? startdate.hashCode() : 0);
-        result = 31 * result + (enddate != null ? enddate.hashCode() : 0);
         return result;
     }
 }

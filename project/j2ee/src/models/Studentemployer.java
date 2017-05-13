@@ -1,9 +1,6 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
+import javax.persistence.*;
 import java.sql.Time;
 
 
@@ -39,7 +36,7 @@ public class Studentemployer {
         this.employerID = employerID;
     }
 
-    @Id
+    @Basic
     @Column(name = "POSITION")
     public String getPosition() {
         return position;
@@ -49,7 +46,7 @@ public class Studentemployer {
         this.position = position;
     }
 
-    @Id
+    @Basic
     @Column(name = "STARTDATE")
     public Time getStartdate() {
         return startdate;
@@ -59,7 +56,7 @@ public class Studentemployer {
         this.startdate = startdate;
     }
 
-    @Id
+    @Basic
     @Column(name = "ENDDATE")
     public Time getEnddate() {
         return enddate;
