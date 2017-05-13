@@ -21,7 +21,7 @@ public class GetTableValues {
         System.out.print("Enter graduate ID: ");
         Integer id = reader.nextInt();
 
-        System.out.println("\nTable: graduate");
+        System.out.println("\nTable: " + gettable);
         System.out.println("ID: " + id.toString());
 
         Key majorKeyPathOnly = Key.createKey(Arrays.asList(gettable, id.toString()));
