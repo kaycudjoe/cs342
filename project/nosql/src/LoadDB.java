@@ -29,7 +29,7 @@ public class LoadDB {
 
     public static void loadGraduates() throws SQLException {
         Statement jdbcStatement = jdbcConnection.createStatement();
-        ResultSet graduates = jdbcStatement.executeQuery("SELECT ID, firstName, lastName, email FROM Graduate");
+        ResultSet graduates = jdbcStatement.executeQuery("SELECT ID, firstName, lastName, email, graduationDate FROM Graduate");
 
         while(graduates.next()) {
             Integer ID = graduates.getInt(1);
@@ -46,6 +46,10 @@ public class LoadDB {
             Key emailKey = Key.createKey(Arrays.asList("graduate", ID.toString()), Arrays.asList("email"));
             Value emailValue = Value.createValue("".getBytes());
             store.put(emailKey, emailValue);
+
+            Key graduationDateKey = Key.createKey(Arrays.asList("graduate", ID.toString()), Arrays.asList("graduationDate"));
+            Value graduationDateValue = Value.createValue("".getBytes());
+            store.put(graduationDateKey, graduationDateValue);
         }
         graduates.close();
         jdbcStatement.close();
