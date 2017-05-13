@@ -42,7 +42,7 @@ public class calvinLWResource {
     }
 
     /**
-     * GET an individual person record.
+     * GET an individual Student record.
      * useful for the career center staff to look up information on certain students
      * @param id the ID of the student to retrieve
      * @return a student record
@@ -50,7 +50,8 @@ public class calvinLWResource {
     @GET
     @Path("Student/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Student getPerson(@PathParam("id") long id) {
+    public Student getStudent(@PathParam("id") long id) {
+        
         return em.find(Student.class, id);
     }
 
@@ -60,7 +61,7 @@ public class calvinLWResource {
      * This could be refactored to use a JPQL query, but this entitymanager-based approach
      * is consistent with the other handlers.
      *
-     * @return a list of all person records
+     * @return a list of all Student records
      */
     @GET
     @Path("students")
@@ -75,10 +76,10 @@ public class calvinLWResource {
      */
 
     @PUT
-    @Path("person/{id}")
+    @Path("student/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response putPerson(Student updateStudent, @PathParam("id") long id){
+    public Response putStudent(Student updateStudent, @PathParam("id") long id){
         Student p = em.find(Student.class, id);
         if(p != null || id != updateStudent.getId()){
             return Response.serverError().entity("Invalid ID").build();
@@ -96,12 +97,12 @@ public class calvinLWResource {
     @Path("students")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Student postPerson(Student newPerson){
+    public Student postStudent(Student newStudent){
         Student p = new Student ();
-        newPerson.setId(p.getId());
-        newPerson.setGraduate(em.find(Graduate.class, newPerson.getGraduate().getId()));
-        em.persist(newPerson);
-        return newPerson;
+        newStudent.setId(p.getId());
+        newStudent.setGraduate(em.find(Graduate.class, newStudent.getGraduate().getId()));
+        em.persist(newStudent);
+        return newStudent;
     }
 
     /**
