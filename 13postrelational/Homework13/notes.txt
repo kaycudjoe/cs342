@@ -2,12 +2,13 @@ Homework 13
 
 2. 
 a. What type of noSQL database system is Oracle’s NoSQL product, KVLite?
-Key-value noSQL database system
+Key-value database
 
 b. The Internet Movie DataBase (imdb.com) is currently implemented in mySQL. If you were required to port it to a noSQL system, which of the noSQL system types would you suggest? Explain your answer.
-I would suggest a Graph database. This is because graph databases are useful for connected data. It provides a two way relationship, so that one can find an actor from a movie, and also find a movie from that actor. You just need to follow the edges between them. 
-We can find movies from actors in KVLite when we use our roles major key paths. We however need to define a new major key path for them. 
+I would suggest a Graph database. This is because graph databases are useful for mapping relationships between actors-movies, movies-actors and such. It will also be fast to traverse the join as the relationship between nodes is persisted as a relationship. 
 
 c. Could you (efficiently) reuse the same key-value structure for exercise 13.1.d (above) and its “opposite”, i.e., get the movies in which a given actor is cast? Why or why not?
+No, because I have 'actorToMovie' set up under ‘movie’, but not a 'movieToActor' under ‘actor’ in my key-value structure. 
 
 d. NoSQL databases are often referred to as schema-less or schema-free. Explain what this means using examples from your homework solution.
+Being schema less means that there exists no defined structure for how entities are created. Example - instances of the Movie entity can have different ordering with the major keys for each entity being changeable. The movie id can be a string or integer for different Movie instances as the fields are not strongly typed. s
