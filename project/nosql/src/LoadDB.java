@@ -29,25 +29,22 @@ public class LoadDB {
 
     public static void loadGraduates() throws SQLException {
         Statement jdbcStatement = jdbcConnection.createStatement();
-        ResultSet graduates = jdbcStatement.executeQuery("SELECT id, firstName, lastName, email FROM Graduate");
+        ResultSet graduates = jdbcStatement.executeQuery("SELECT ID, firstName, lastName, email FROM Graduate");
 
         while(graduates.next()) {
-            Integer graduateId = graduates.getInt(1);
+            Integer ID = graduates.getInt(1);
             String email = graduates.getString(4);
 
-            Key nameKey = Key.createKey(Arrays.asList("graduate", graduateId.toString()), Arrays.asList("firstName"));
-            Value nameValue = Value.createValue(graduates.getString(2).getBytes());
-            store.put(nameKey, nameValue);
+            Key firstNameKey = Key.createKey(Arrays.asList("graduate", ID.toString()), Arrays.asList("firstName"));
+            Value firstNameValue = Value.createValue(graduates.getString(2).getBytes());
+            store.put(firstNameKey, firstNameValue);
 
-            Key yearKey = Key.createKey(Arrays.asList("graduate", graduateId.toString()), Arrays.asList("lastName"));
-            Value yearValue = Value.createValue(graduates.getString(3).getBytes());
-            store.put(yearKey, yearValue);
+            Key lastNameKey = Key.createKey(Arrays.asList("graduate", ID.toString()), Arrays.asList("lastName"));
+            Value lastNameValue = Value.createValue(graduates.getString(3).getBytes());
+            store.put(lastNameKey, lastNameValue);
 
-            Key emailKey = Key.createKey(Arrays.asList("graduate", graduateId.toString()), Arrays.asList("email"));
+            Key emailKey = Key.createKey(Arrays.asList("graduate", ID.toString()), Arrays.asList("email"));
             Value emailValue = Value.createValue("".getBytes());
-            if (email != null) {
-                emailValue = Value.createValue(email.getBytes());
-            }
             store.put(emailKey, emailValue);
         }
         graduates.close();
@@ -57,24 +54,24 @@ public class LoadDB {
 
     public static void loadEmployers() throws SQLException {
         Statement jdbcStatement = jdbcConnection.createStatement();
-        ResultSet employers = jdbcStatement.executeQuery("SELECT id, firstName, lastName, email, CompanyName FROM Employer");
+        ResultSet employers = jdbcStatement.executeQuery("SELECT ID, firstName, lastName, email, CompanyName FROM Employer");
 
         while(employers.next()) {
-            Integer employerId = employers.getInt(1);
+            Integer ID = employers.getInt(1);
 
-            Key firstNameKey = Key.createKey(Arrays.asList("employer", employerId.toString()), Arrays.asList("firstName"));
+            Key firstNameKey = Key.createKey(Arrays.asList("employer", ID.toString()), Arrays.asList("firstName"));
             Value firstNameValue = Value.createValue(employers.getString(2).getBytes());
             store.put(firstNameKey, firstNameValue);
 
-            Key lastNameKey = Key.createKey(Arrays.asList("employer", employerId.toString()), Arrays.asList("lastName"));
+            Key lastNameKey = Key.createKey(Arrays.asList("employer", ID.toString()), Arrays.asList("lastName"));
             Value lastNameValue = Value.createValue(employers.getString(3).getBytes());
             store.put(lastNameKey, lastNameValue);
 
-            Key emailKey = Key.createKey(Arrays.asList("employer", employerId.toString()), Arrays.asList("email"));
+            Key emailKey = Key.createKey(Arrays.asList("employer", ID.toString()), Arrays.asList("email"));
             Value emailValue = Value.createValue(employers.getString(3).getBytes());
             store.put(emailKey, emailValue);
 
-            Key CompanyNameKey = Key.createKey(Arrays.asList("employer", employerId.toString()), Arrays.asList("CompanyName"));
+            Key CompanyNameKey = Key.createKey(Arrays.asList("employer", ID.toString()), Arrays.asList("CompanyName"));
             Value CompanyNameValue = Value.createValue(employers.getString(3).getBytes());
             store.put(CompanyNameKey, CompanyNameValue);
         }
