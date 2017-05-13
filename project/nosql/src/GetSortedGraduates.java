@@ -10,6 +10,7 @@ import java.util.*;
  * This is useful for the career center staff to see all the graduates currently involved in the program.
  *
  *  noSQL is not very appropriate for sorting, and therefore I needed to make a Graduate class.
+ *  I therefore made a graduate class to do this.
  */
 public class GetSortedGraduates {
     public static void main(String[] args) throws SQLException {

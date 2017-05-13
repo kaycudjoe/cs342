@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 /**
  * Created by Karen Cudjoe
+ * Gets the values in a certain table
  */
 public class GetTableValues {
     public static void main(String[] args) throws SQLException {

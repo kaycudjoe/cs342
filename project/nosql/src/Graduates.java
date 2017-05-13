@@ -2,7 +2,7 @@
  * Created by kec32
  *
  * Class defines a Graduate
- *      is used to sort Graduates
+ * It is used to sort Graduates
  */
 public class Graduates {
     private String myID;

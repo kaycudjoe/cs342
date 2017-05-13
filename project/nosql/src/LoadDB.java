@@ -9,7 +9,9 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * Created by kec32 on 5/13/2017.
+ * LoadDB loads data from calvinLW SQL relational database and converts it into KVLite store.
+ * @author Karen Cudjoe
+ * @version 5/12/2017
  */
 public class LoadDB {
     private static KVStore store;
@@ -29,7 +31,7 @@ public class LoadDB {
 
     public static void loadGraduates() throws SQLException {
         Statement jdbcStatement = jdbcConnection.createStatement();
-        ResultSet graduates = jdbcStatement.executeQuery("SELECT ID, firstName, lastName, email, graduationDate FROM Graduate");
+        ResultSet graduates = jdbcStatement.executeQuery("SELECT ID, firstName, lastName, email FROM Graduate");
 
         while(graduates.next()) {
             Integer ID = graduates.getInt(1);
@@ -47,9 +49,6 @@ public class LoadDB {
             Value emailValue = Value.createValue("".getBytes());
             store.put(emailKey, emailValue);
 
-            Key graduationDateKey = Key.createKey(Arrays.asList("graduate", ID.toString()), Arrays.asList("graduationDate"));
-            Value graduationDateValue = Value.createValue("".getBytes());
-            store.put(graduationDateKey, graduationDateValue);
         }
         graduates.close();
         jdbcStatement.close();
