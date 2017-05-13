@@ -18,10 +18,10 @@ public class GetTableValues {
         System.out.print("Enter table name: ");
         String gettable = reader.nextLine();
 
-        System.out.print("Enter student ID: ");
+        System.out.print("Enter graduate ID: ");
         Integer id = reader.nextInt();
 
-        System.out.println("\nTable: student");
+        System.out.println("\nTable: graduate");
         System.out.println("ID: " + id.toString());
 
         Key majorKeyPathOnly = Key.createKey(Arrays.asList(gettable, id.toString()));

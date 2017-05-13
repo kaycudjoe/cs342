@@ -12,7 +12,7 @@ import java.util.Iterator;
  * This query is useful because it helps the career center staff to see what graduates work at what companies, in order to pair graduates with students who work at the same companies with them.
  * It also helps them see which companies are more interested in Calvin Students, so they know which companies need more marketing to students.
  *
- *  noSQL is appropriate for this query because the Iterator makes it very easy to iterate through each employer with a graduate
+ *  noSQL is appropriate for this query because the Iterator makes it very easy to iterate through each record with a major key beginning with GraduateEmployer/employerID to find the graduates of that employer
  */
 public class GetEmployerGraduates {
     public static void main(String[] args) throws SQLException {

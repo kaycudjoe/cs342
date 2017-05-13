@@ -9,8 +9,7 @@ import java.util.*;
  * GetSortedGraduates gets all Graduates and sorts them in alphabetical order
  * This is useful for the career center staff to see all the graduates currently involved in the program.
  *
- *  noSQL is not very appropriate for sorting, and therefore I needed to make a Graduate class.
- *  I therefore made a graduate class to do this.
+ *  noSQL is not very appropriate for sorting, so I made a Graduate class. The set up of the key-value pairs does not make it easy to associate different attributes of the Graduate with each other, like a SQL database allows
  */
 public class GetSortedGraduates {
     public static void main(String[] args) throws SQLException {
