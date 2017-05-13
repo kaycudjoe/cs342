@@ -12,6 +12,8 @@ import java.util.List;
  * This stateless session bean serves as a RESTful resource handler for the calvinLW.
  * It uses a container-managed entity manager.
  *
+ * The calvin lifework database allows you to keep track of students enrolled in the lifework program to determine who is eligibile for the scholarship in their 4th year
+ * This will be useful to the career center staff if there have been any changes to the students' information(PUT and DELETE), if these is a new student (POST) or to get information about a certain student (GET)
  * @author Karen Cudjoe
  * @version Spring, 2017
  */
@@ -30,7 +32,7 @@ public class calvinLWResource {
     /**
      * GET a default message.
      *
-     * @return a static hello-world message
+     * @return a static hello message
      */
     @GET
     @Path("hello")
@@ -41,9 +43,9 @@ public class calvinLWResource {
 
     /**
      * GET an individual person record.
-     *
+     * useful for the career center staff to look up information on certain students
      * @param id the ID of the student to retrieve
-     * @return a person record
+     * @return a student record
      */
     @GET
     @Path("Student/{id}")
@@ -54,6 +56,7 @@ public class calvinLWResource {
 
     /**
      * GET all students using the criteria query API.
+     * This will be useful to the career center staff to look up all the student enrolled in the program
      * This could be refactored to use a JPQL query, but this entitymanager-based approach
      * is consistent with the other handlers.
      *
@@ -67,7 +70,7 @@ public class calvinLWResource {
     }
 
     /**
-     * PUT updatees a specific Student record
+     * PUT updates a specific Student record
      * It is useful for the career center staff to update the graduates assigned to students
      */
 
@@ -80,7 +83,7 @@ public class calvinLWResource {
         if(p != null || id != updateStudent.getId()){
             return Response.serverError().entity("Invalid ID").build();
         }
-        updateStudent.setGraduate(em.find(Graduate.class, updateGraduate.getHousehold().getId()));
+        updateStudent.setGraduate(em.find(Graduate.class, updateStudent.getGraduate().getId()));
         em.merge(updateStudent);
         return Response.ok(em.find(Student.class,id), MediaType.APPLICATION_JSON).build();
     }
