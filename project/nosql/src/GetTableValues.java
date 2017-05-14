@@ -5,10 +5,8 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.Scanner;
 
-
 /**
- * Created by Karen Cudjoe
- * Gets the values in a certain table
+ * Created by kec32 on 5/11/2017.
  */
 public class GetTableValues {
     public static void main(String[] args) throws SQLException {
@@ -18,7 +16,7 @@ public class GetTableValues {
         System.out.print("Enter table name: ");
         String gettable = reader.nextLine();
 
-        System.out.print("Enter graduate ID: ");
+        System.out.print("Enter ID: ");
         Integer id = reader.nextInt();
 
         System.out.println("\nTable: " + gettable);
@@ -28,7 +26,7 @@ public class GetTableValues {
         Map<Key, ValueVersion> fields = store.multiGet(majorKeyPathOnly, null, null);
         for (Map.Entry<Key, ValueVersion> field : fields.entrySet()) {
             String fieldValue = new String(field.getValue().getValue().getValue());
-            System.out.println(fieldValue);
+            System.out.println("\t" + fieldValue);
         }
         store.close();
     }

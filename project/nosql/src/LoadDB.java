@@ -31,11 +31,10 @@ public class LoadDB {
 
     public static void loadGraduates() throws SQLException {
         Statement jdbcStatement = jdbcConnection.createStatement();
-        ResultSet graduates = jdbcStatement.executeQuery("SELECT ID, firstName, lastName, email FROM Graduate");
+        ResultSet graduates = jdbcStatement.executeQuery("SELECT ID, firstName, lastName, email, graduationDate FROM Graduate");
 
         while(graduates.next()) {
             Integer ID = graduates.getInt(1);
-            String email = graduates.getString(4);
 
             Key firstNameKey = Key.createKey(Arrays.asList("graduate", ID.toString()), Arrays.asList("firstName"));
             Value firstNameValue = Value.createValue(graduates.getString(2).getBytes());
@@ -46,8 +45,12 @@ public class LoadDB {
             store.put(lastNameKey, lastNameValue);
 
             Key emailKey = Key.createKey(Arrays.asList("graduate", ID.toString()), Arrays.asList("email"));
-            Value emailValue = Value.createValue("".getBytes());
+            Value emailValue = Value.createValue(graduates.getString(4).getBytes());
             store.put(emailKey, emailValue);
+
+            Key graduationDateKey = Key.createKey(Arrays.asList("graduate", ID.toString()), Arrays.asList("graduationDate"));
+            Value graduationDateValue = Value.createValue(graduates.getString(5).getBytes());
+            store.put(graduationDateKey, graduationDateValue);
 
         }
         graduates.close();
@@ -62,21 +65,21 @@ public class LoadDB {
         while(employers.next()) {
             Integer ID = employers.getInt(1);
 
-            Key firstNameKey = Key.createKey(Arrays.asList("employer", ID.toString()), Arrays.asList("firstName"));
-            Value firstNameValue = Value.createValue(employers.getString(2).getBytes());
-            store.put(firstNameKey, firstNameValue);
+            Key firstName2Key = Key.createKey(Arrays.asList("employer", ID.toString()), Arrays.asList("firstName"));
+            Value firstName2Value = Value.createValue(employers.getString(2).getBytes());
+            store.put(firstName2Key, firstName2Value);
 
-            Key lastNameKey = Key.createKey(Arrays.asList("employer", ID.toString()), Arrays.asList("lastName"));
-            Value lastNameValue = Value.createValue(employers.getString(3).getBytes());
-            store.put(lastNameKey, lastNameValue);
+            Key lastName2Key = Key.createKey(Arrays.asList("employer", ID.toString()), Arrays.asList("lastName"));
+            Value lastName2Value = Value.createValue(employers.getString(3).getBytes());
+            store.put(lastName2Key, lastName2Value);
 
-            Key emailKey = Key.createKey(Arrays.asList("employer", ID.toString()), Arrays.asList("email"));
-            Value emailValue = Value.createValue(employers.getString(3).getBytes());
-            store.put(emailKey, emailValue);
+            Key email2Key = Key.createKey(Arrays.asList("employer", ID.toString()), Arrays.asList("email"));
+            Value email2Value = Value.createValue(employers.getString(3).getBytes());
+            store.put(email2Key, email2Value);
 
-            Key CompanyNameKey = Key.createKey(Arrays.asList("employer", ID.toString()), Arrays.asList("CompanyName"));
-            Value CompanyNameValue = Value.createValue(employers.getString(3).getBytes());
-            store.put(CompanyNameKey, CompanyNameValue);
+            Key CompanyName2Key = Key.createKey(Arrays.asList("employer", ID.toString()), Arrays.asList("CompanyName"));
+            Value CompanyName2Value = Value.createValue(employers.getString(3).getBytes());
+            store.put(CompanyName2Key, CompanyName2Value);
         }
         employers.close();
         jdbcStatement.close();
@@ -84,7 +87,7 @@ public class LoadDB {
 
     public static void loadGraduateEmployer() throws SQLException {
         Statement jdbcStatement = jdbcConnection.createStatement();
-        ResultSet resultSet = jdbcStatement.executeQuery("SELECT employerid, graduateId, position FROM GraduateEmployer");
+        ResultSet resultSet = jdbcStatement.executeQuery("SELECT graduateId, employerid, position FROM GraduateEmployer");
 
         while(resultSet.next()) {
             Key key = Key.createKey(Arrays.asList("position", resultSet.getString(2)), Arrays.asList(resultSet.getString(3)));
