@@ -2,38 +2,37 @@ package models;
 
 import javax.persistence.*;
 import java.sql.Time;
-
+import java.sql.Time;
 
 /**
- * Created by kec32 on 5/12/2017.
+ * Created by kec32 on 5/13/2017.
  */
 @Entity
-@IdClass(StudentemployerPK.class)
 public class Studentemployer {
-    private long studentID;
-    private long employerID;
+    private Long studentid;
+    private Long employerid;
     private String position;
     private Time startdate;
     private Time enddate;
 
     @Id
     @Column(name = "STUDENTID")
-    public long getStudentID() {
-        return studentID;
+    public Long getStudentid() {
+        return studentid;
     }
 
-    public void setStudentID(long studentID) {
-        this.studentID = studentID;
+    public void setStudentid(Long studentid) {
+        this.studentid = studentid;
     }
 
     @Id
-    @Column(name = "EmployerID")
-    public long getEmployerID() {
-        return employerID;
+    @Column(name = "EMPLOYERID")
+    public Long getEmployerid() {
+        return employerid;
     }
 
-    public void setEmployerID(long employerID) {
-        this.employerID = employerID;
+    public void setEmployerid(Long employerid) {
+        this.employerid = employerid;
     }
 
     @Basic
@@ -73,8 +72,8 @@ public class Studentemployer {
 
         Studentemployer that = (Studentemployer) o;
 
-        if (studentID != this.studentID) return false;
-        if (employerID != this.employerID) return false;
+        if (studentid != null ? !studentid.equals(that.studentid) : that.studentid != null) return false;
+        if (employerid != null ? !employerid.equals(that.employerid) : that.employerid != null) return false;
         if (position != null ? !position.equals(that.position) : that.position != null) return false;
         if (startdate != null ? !startdate.equals(that.startdate) : that.startdate != null) return false;
         if (enddate != null ? !enddate.equals(that.enddate) : that.enddate != null) return false;
@@ -84,8 +83,8 @@ public class Studentemployer {
 
     @Override
     public int hashCode() {
-        int result = (int) (studentID ^ (studentID >>> 32));
-        result = 31 * result + (int) (employerID ^ (employerID >>> 32));
+        int result = studentid != null ? studentid.hashCode() : 0;
+        result = 31 * result + (employerid != null ? employerid.hashCode() : 0);
         result = 31 * result + (position != null ? position.hashCode() : 0);
         result = 31 * result + (startdate != null ? startdate.hashCode() : 0);
         result = 31 * result + (enddate != null ? enddate.hashCode() : 0);

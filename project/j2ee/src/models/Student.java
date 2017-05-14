@@ -1,13 +1,12 @@
 package models;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Time;
+import java.util.List;
+
 
 /**
- * Created by kec32 on 5/12/2017.
+ * Created by kec32 on 5/13/2017.
  */
 @Entity
 public class Student {
@@ -18,6 +17,9 @@ public class Student {
     private String phonenumber;
     private Time graduationdate;
     private Time scholarshipreceivedate;
+    private Graduate graduate;
+    private List<Employer> employers;
+
 
     @Id
     @Column(name = "ID")
@@ -88,6 +90,26 @@ public class Student {
     public void setScholarshipreceivedate(Time scholarshipreceivedate) {
         this.scholarshipreceivedate = scholarshipreceivedate;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "GRADUATEID", referencedColumnName = "ID")
+    public Graduate getGraduate() {
+        return graduate;
+    }
+    public void setGraduate(Graduate graduateId) {
+        this.graduate = graduateId;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "STUDENTEMPLOYER", schema = "calvinLW",
+            joinColumns = @JoinColumn(name = "STUDENTID", referencedColumnName = "ID", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "EMPLOYERID", referencedColumnName = "ID", nullable = false))
+
+    public List<Employer> getEmployers() { return employers; }
+
+    public void setEmployers(List<Employer> employer) {this.employers = employer; }
+
+
 
     @Override
     public boolean equals(Object o) {

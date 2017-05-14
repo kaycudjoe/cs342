@@ -1,4 +1,5 @@
-import models.*;
+import models.Student;
+import models.Graduate;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -9,15 +10,12 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
- * This stateless session bean serves as a RESTful resource handler for the calvinLW.
+ * This stateless session bean serves as a RESTful resource handler for the CPDB.
  * It uses a container-managed entity manager.
  *
- * The calvin lifework database allows you to keep track of students enrolled in the lifework program to determine who is eligibile for the scholarship in their 4th year
- * This will be useful to the career center staff if there have been any changes to the students' information(PUT and DELETE), if these is a new student (POST) or to get information about a certain student (GET)
- * @author Karen Cudjoe
+ * @author kvlinden
  * @version Spring, 2017
  */
-
 @Stateless
 @Path("calvinLW")
 public class calvinLWResource {
@@ -32,56 +30,53 @@ public class calvinLWResource {
     /**
      * GET a default message.
      *
-     * @return a static hello message
+     * @return a static hello-world message
      */
     @GET
     @Path("hello")
     @Produces("text/plain")
-    public String getIntroductionMessage() {
-        return "Hello! Welcome to the calvin lifework database web service!";
+    public String getClichedMessage() {
+        return "Hello, JPA!";
     }
 
     /**
-     * GET an individual Student record.
-     * useful for the career center staff to look up information on certain students
-     * @param id the ID of the student to retrieve
-     * @return a student record
+     * GET an individual person record.
+     *
+     * @param id the ID of the person to retrieve
+     * @return a person record
      */
     @GET
-    @Path("Student/{id}")
+    @Path("student/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Student getStudent(@PathParam("id") long id) {
-        
         return em.find(Student.class, id);
     }
 
     /**
-     * GET all students using the criteria query API.
-     * This will be useful to the career center staff to look up all the student enrolled in the program
+     * GET all people using the criteria query API.
      * This could be refactored to use a JPQL query, but this entitymanager-based approach
      * is consistent with the other handlers.
      *
-     * @return a list of all Student records
+     * @return a list of all person records
      */
     @GET
     @Path("students")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Student> getStudents() {
+    public List<Student> getPeople() {
         return em.createQuery(em.getCriteriaBuilder().createQuery(Student.class)).getResultList();
     }
 
+    //Homework 12
     /**
-     * PUT updates a specific Student record
-     * It is useful for the career center staff to update the graduates assigned to students
+     * PUT the given person entity, it it exists, using the values in the JSON-formatted person entity passed with the request.
      */
-
     @PUT
     @Path("student/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response putStudent(Student updateStudent, @PathParam("id") long id){
         Student p = em.find(Student.class, id);
-        if(p != null || id != updateStudent.getId()){
+        if(updateStudent.getId() != id || p == null){
             return Response.serverError().entity("Invalid ID").build();
         }
         updateStudent.setGraduate(em.find(Graduate.class, updateStudent.getGraduate().getId()));
@@ -90,8 +85,7 @@ public class calvinLWResource {
     }
 
     /**
-     * POST creates a new Student record
-     * it is useful for the career center staff to add a new student to the database
+     * POST a new person
      */
     @POST
     @Path("students")
@@ -106,8 +100,7 @@ public class calvinLWResource {
     }
 
     /**
-     * DELETE deletes a specific Student record
-     * this is useful for the career center staff to remove a Student, who has left the program
+     * DELETE the person with the given ID, if it exists
      *
      */
     @DELETE

@@ -3,57 +3,53 @@ package models;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import java.io.Serializable;
-import java.sql.Time;
 
 /**
- * Created by kec32 on 5/12/2017.
+ * Created by kec32 on 4/28/2017.
  */
 
+
 public class StudentemployerPK implements Serializable {
-    private long studentID;
-    private long employerID;
-    private String position;
-    private Time startdate;
-    private Time enddate;
+    private long studentid;
+    private long employerid;
 
     @Column(name = "STUDENTID")
     @Id
-    public long getStudentID() {
-        return studentID;
+    public long getStudentid() {
+        return studentid;
     }
 
-    public void setStudentID(long studentID) {
-        this.studentID = studentID;
+    public void setStudentid(long studentid) {
+        this.studentid = studentid;
     }
 
-    @Column(name = "EmployerID")
+    @Column(name = "EMPLOYERID")
     @Id
-    public long getEmployerID() {
-        return employerID;
+    public long getEmployerid() {
+        return employerid;
     }
 
-    public void setEmployerID(long employerID) {
-        this.employerID = employerID;
+    public void setEmployerid(long employerid) {
+        this.employerid = employerid;
     }
-
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Studentemployer that = (Studentemployer) o;
+        StudentemployerPK that = (StudentemployerPK) o;
 
-        if (studentID != this.studentID) return false;
-        if (employerID != this.employerID) return false;
+        if (studentid != that.studentid) return false;
+        if (employerid !=  that.employerid) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (studentID ^ (studentID >>> 32));
-        result = 31 * result + (int) (employerID ^ (employerID >>> 32));
+        int result = (int) (studentid ^ (studentid >>> 32));
+        result = 31 * result + (int) (employerid ^ (employerid >>> 32));
         return result;
     }
 }

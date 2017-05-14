@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import java.sql.Time;
 
 /**
- * Created by kec32 on 5/12/2017.
+ * Created by kec32 on 5/13/2017.
  */
 @Entity
 public class Graduate {

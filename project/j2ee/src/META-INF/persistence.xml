@@ -3,14 +3,9 @@
 
     <persistence-unit name="calvinLWEntities" transaction-type="JTA">
         <class>models.Graduate</class>
-        <class>models.Staff</class>
         <class>models.Student</class>
         <class>models.Employer</class>
-        <class>models.Yearrequired</class>
-        <class>models.Requirement</class>
-        <class>models.Studentrequirement</class>
         <class>models.Studentemployer</class>
-        <class>models.Graduateemployer</class>
         <properties>
             <property name="eclipselink.jdbc.url" value="jdbc:oracle:thin:@//localhost:1521/XE"/>
             <property name="eclipselink.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
@@ -19,5 +14,3 @@
         </properties>
     </persistence-unit>
 </persistence>
-
-
