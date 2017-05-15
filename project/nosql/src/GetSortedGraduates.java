@@ -4,7 +4,10 @@ import java.sql.SQLException;
 import java.util.*;
 
 /**
- * Created by kec32
+ * Created by kec32 on 5/13/2017
+ * GetSortedGraduates gets the graduates that exist in the database sorted by their graduationdates.
+ * It will be useful to the career center staff to know the different graduates involved in the program sorted by the years they graduated in order to effectively assign students to them.
+ * It will also be useful to them when they want to select a group of graduates who graduated in a certain year or on a specific date or so
  * */
 public class GetSortedGraduates {
 

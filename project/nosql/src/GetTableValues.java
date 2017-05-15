@@ -6,7 +6,8 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
- * Created by kec32 on 5/11/2017.
+ * GetTableValues gets information stored for a specific table the user enters
+ * Created by kec32 on 5/13/2017
  */
 public class GetTableValues {
     public static void main(String[] args) throws SQLException {

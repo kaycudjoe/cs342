@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 /**
  * Created by kec32 on 5/11/2017.
+ * GetGraduateEmployer gets the graduate position and employer position when the user enters in a graduate ID and their employer ID.
+ * This will be useful to the career center staff to get all the positions graduates have had - and the positions of their employers for any specific position
  */
 public class GetGraduateEmployer {
     public static void main(String[] args) throws SQLException {
