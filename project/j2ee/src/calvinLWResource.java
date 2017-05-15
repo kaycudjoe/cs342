@@ -13,8 +13,15 @@ import java.util.List;
  * This stateless session bean serves as a RESTful resource handler for the CPDB.
  * It uses a container-managed entity manager.
  *
- * @author kvlinden
- * @version Spring, 2017
+ * calvinLWResource allows the career center staff to perform data manipulation operations on the calvinLW database.
+ * It tries to reduce the impedance mismatch between the relational database and the object-oriented language, Java.
+ * It allows its users to access information on a particular student involved in the lifework program, as well as all the students stored in the database - GET
+ * It also allows its users to update an existing student's information. This could be useful when information about a student like an email address needs to be updated. - PUT
+ * It allows its users to create a new student, this is useful when a new student starts the program - POST
+ * It allows its users to delete a student. With the tudent ID, the user can delete a student if they are no longer part of the lifework program - DELETE
+ *
+ *
+ * Created by kec32 on 5/13/2017
  */
 @Stateless
 @Path("calvinLW")
@@ -40,10 +47,10 @@ public class calvinLWResource {
     }
 
     /**
-     * GET an individual person record.
-     *
-     * @param id the ID of the person to retrieve
-     * @return a person record
+     * GET an individual student record.
+     * Useful for the career center staff to retrive the record of a particular student involved in the lifework program
+     * @param id the ID of the student to retrieve
+     * @return a student record
      */
     @GET
     @Path("student/{id}")
@@ -53,11 +60,10 @@ public class calvinLWResource {
     }
 
     /**
-     * GET all people using the criteria query API.
-     * This could be refactored to use a JPQL query, but this entitymanager-based approach
-     * is consistent with the other handlers.
+     * GET all students using the criteria query API.
+     * This is useful for the career center staff to get information on all students involved in the Calvin Lifework Program.
      *
-     * @return a list of all person records
+     * @return a list of all students records
      */
     @GET
     @Path("students")
@@ -66,9 +72,9 @@ public class calvinLWResource {
         return em.createQuery(em.getCriteriaBuilder().createQuery(Student.class)).getResultList();
     }
 
-    //Homework 12
     /**
-     * PUT the given person entity, it it exists, using the values in the JSON-formatted person entity passed with the request.
+     * PUT modifies the given student entity, if it exists, using the values in the JSON-formatted student entity passed with the request.
+     * Useful for the database develop to modify student records.
      */
     @PUT
     @Path("student/{id}")
@@ -85,7 +91,8 @@ public class calvinLWResource {
     }
 
     /**
-     * POST a new person
+     * POST a new student to the database
+     * Useful for the database developer to create a new student for the database
      */
     @POST
     @Path("students")
@@ -100,7 +107,8 @@ public class calvinLWResource {
     }
 
     /**
-     * DELETE the person with the given ID, if it exists
+     * DELETE the student with the given ID, if it exists
+     * Allows the database developer to delete a student who is no longer enrolled in the program
      *
      */
     @DELETE
