@@ -7,7 +7,7 @@ For the Staff table, I used real information from the career center. I used info
 I also used real information for the YearRequired and the Requirement tables which I obtained from the Calvin LifeWork webpage. This is the link - http://calvin.edu/lifework/
 
 2. one-paragraph discussion identifying/justifying your chosen normal form.
-My chosen normal form is the BCNF because it is restrictive enough to ensure that the database is created and works as desired. 
+My chosen normal form is the 4NF and as such, in BCNF as it doesn’t have undesirable multivalued dependencies. 
 
 3. demonstration that your schema satisfies your chosen normal form.
 Demonstration of BCNF and 4NF
@@ -76,7 +76,7 @@ This relation is in 4NF because there are no non-trivial MVDs where the left han
 
 
 StudentRequirement table
-{studentID, requirementID} -> (yearlevelTaken, scholarship)
+{studentID, requirementID} -> (yearlevelTaken)
 
 Candidate Keys: {studentID, requirementID}
 
