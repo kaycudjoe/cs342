@@ -2,11 +2,11 @@ Karen Cudjoe
 Spring 2017
 CS342 Final Project - Calvin Lifework Database 
 
-To gain access to this database, log into Oracle using the system account. Then run the create.sql file (run @create). 
-The user calvinLW is then created with access to the database. 
-
 This database was created using Oracle SQL Syntax. 
 This document clarifies how to use the scripts for the Calvin Lifework Database. 
+
+To gain access to this database, log into Oracle using the system account. Then run the create.sql file (run @create). 
+The user calvinLW is then created with access to the database. 
 
 create.sql: Whilst in the corerct path with the database files, run @create to create your user, connect to the account and load the database. This runs load.sql. 
 
