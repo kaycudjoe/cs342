@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import java.sql.Time;
 
 /**
+ * This class defined the Graduate entity of the calvinLW database.
  * Created by kec32 on 5/13/2017.
  */
 @Entity
