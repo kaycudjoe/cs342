@@ -74,6 +74,8 @@ public class calvinLWResource {
 
     /**
      * PUT modifies the given student entity, if it exists, using the values in the JSON-formatted student entity passed with the request.
+     * @param id the ID of the student to modify
+     * @return a student record
      * Useful for the database develop to modify student records.
      */
     @PUT
@@ -92,6 +94,8 @@ public class calvinLWResource {
 
     /**
      * POST a new student to the database
+     * @param id the ID of the students to create
+     * @return a Student record
      * Useful for the database developer to create a new student for the database
      */
     @POST
@@ -108,6 +112,8 @@ public class calvinLWResource {
 
     /**
      * DELETE the student with the given ID, if it exists
+     * @param id the ID of the student to delete
+     * @return string : success message
      * Allows the database developer to delete a student who is no longer enrolled in the program
      *
      */
