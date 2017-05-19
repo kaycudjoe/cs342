@@ -5,6 +5,7 @@ import java.sql.Time;
 import java.sql.Time;
 
 /**
+ * This class defines the many-to-many relationship between student and employer.
  * Created by kec32 on 5/13/2017.
  */
 @Entity
