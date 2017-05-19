@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
+ * This class defines the Employer entity for the calvinLW database. It defines all the attributes for the entity.
  * Created by kec32 on 5/13/2017.
  */
 @Entity
