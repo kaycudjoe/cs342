@@ -6,6 +6,8 @@ import java.util.List;
 
 
 /**
+ * This class defines the Student entity for the calvinLW database. It defines all the attributes for the entity, including
+ * the one-to-many and many-to-many relationships.
  * Created by kec32 on 5/13/2017.
  */
 @Entity
