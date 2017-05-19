@@ -14,6 +14,20 @@ import java.util.Map;
  * LoadDB loads data from the OracleXE calvinLW Graduate, Employer and GraduateEmployer tables
  * and loads them into the Oracle KVLite using a key-value structure.
  * It will be useful for my database developers to access the calvinLW database records and store them in a key-value database that doesn't have most of SQL relational database issues.
+ *
+ * Key and Key-Value structures:
+ *      graduate/$id/-/firstName    :   $firstName
+ *      graduate/$id/-/lastName : $lastName
+ *      graduate/$id/-/email   :   $email
+ *      graduate/$id/-/graduationDate :   $graduationDate
+ *
+ *      employer/$id/-/name : $firstName
+ *      employer/$id/-/lastName : $lastName
+ *      employer/$id/-/email : $email
+ *      employer/$id/-/companyName : $companyName
+ *
+ *      graduateEmpoyer/$graduateId/$EmployerId/-/position  : $position
+ *      
  */
 public class LoadDB {
     private static KVStore store;
