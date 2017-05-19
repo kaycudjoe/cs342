@@ -3,7 +3,4 @@ CS 342
 
 Calvin LifeWork Database:
 
-Calvin LifeWork prepares students for life after college and helps students dive right into whatever God is calling them to do. 
-My vision for this project is a database to manage every information relevant to LifeWork and show which students are eligible for the $3000 scholarship which is given to eligible students at the start of their senior year. 
-This database will include tables like Student, Graduate, Staff, YearRequired, Requirement, Employer. 
-The potential stakeholders for this will be students enrolled in the LifeWork Program, the Career Center Employees and faculty/staff involved in the program.
+Calvin LifeWork prepares students for life after college and helps students dive right into whatever God is calling them to do. My vision for this project is to create a database to manage every information relevant to Calvin LifeWork and to show which students are eligible for the $3000 scholarship which is given to eligible students at the start of their senior year. Students who complete all the requirements (during the required year) at Calvin are eligible for the scholarship. This database stores information for students enrolled in the calvin Lifework program, their assigned graduates (and the employers of their graduates), their assigned staff members, their employers, the requirements they have met and others. This database includes tables like Student, Graduate, Staff, YearRequired, Requirement, Employer. The stakeholders are students enrolled in the LifeWork Program, the Career Center Employees and faculty/staff involved in the program.
